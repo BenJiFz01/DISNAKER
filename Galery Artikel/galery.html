@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeri Artikel & Berita — Disnakertrans Kab. Serang</title>
+
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles_galery.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img src="/img/logokabserang.png" alt="Logo Disnakertrans Kabupaten Serang" />
+        <span>
+          Dinas Tenaga Kerja dan Transmigrasi<br/>
+          <small>Kabupaten Serang</small>
+        </span>
+      </a>
+      <nav>
+        <ul>
+          <li><a class="active" href="../mainmenu/index.html">Home</a></li>
+          <li><a href="#">Profil</a></li>
+          <li><a href="#">Berita</a></li>
+          <li><a href="#">Layanan Pengaduan</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="accent-line" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== HERO / TITLE ===== -->
+  <section class="page-hero container">
+    <h1>Galeri Artikel & Berita</h1>
+    <p class="sub">Kumpulan informasi terkini seputar ketenagakerjaan, pelatihan, dan program transmigrasi di Kabupaten Serang.</p>
+  </section>
+
+  <!-- ===== TOOLBAR (Search + Filter) ===== -->
+  <section class="toolbar container">
+    <form class="search" onsubmit="return false;">
+      <span class="icon">🔎</span>
+      <input id="q" type="search" placeholder="Cari artikel..." aria-label="Kata kunci" />
+    </form>
+    <button id="btnFilter" class="btn btn-filter">Filter</button>
+  </section>
+
+  <!-- ===== ARTICLE GRID ===== -->
+  <section class="gallery container" id="grid">
+  <article class="card" data-category="ketenagakerjaan" data-date="2025-10-13" data-title="Job Fair Serang 2025 Resmi Dibuka">
+    <a href="../Galery Artikel/Artikel/artikel1.html" class="card-link">
+      <div class="thumb" style="background-image:url('../img/poster-barista-day-1.jpg');"></div>
+      <div class="card-body">
+        <h3>☕ Sehari di Disnakertrans Kabupaten Serang: Rumahnya Peningkatan Kompetensi Tenaga Kerja</h3>
+        <p>Pagi ini suasana di Dinas Tenaga Kerja dan Transmigrasi (Disnakertrans) Kabupaten Serang tampak lebih ramai dari biasanya....</p>
+        <small>13 Okt 2025 • Sertifikasi </small>
+      </div>
+    </a>
+  </article>
+
+    <article class="card" data-category="pelatihan" data-date="2025-03-09">
+      <a class="thumb" style="background-image:url('https://picsum.photos/seed/2/640/400');"></a>
+      <div class="card-body">
+        <h3>Pelatihan Operator CNC Batch 2</h3>
+        <p>Peningkatan kompetensi berbasis kebutuhan industri manufaktur lokal.</p>
+        <small>09 Mar 2025 • Pelatihan</small>
+      </div>
+    </article>
+
+    <article class="card" data-category="transmigrasi" data-date="2025-03-02">
+      <a class="thumb" style="background-image:url('https://picsum.photos/seed/3/640/400');"></a>
+      <div class="card-body">
+        <h3>Fasilitasi Transmigrasi Mandiri</h3>
+        <p>Panduan pendaftaran dan wilayah tujuan transmigrasi.</p>
+        <small>02 Mar 2025 • Transmigrasi</small>
+      </div>
+    </article>
+
+    <article class="card" data-category="pelatihan" data-date="2025-02-27">
+      <a class="thumb" style="background-image:url('https://picsum.photos/seed/4/640/400');"></a>
+      <div class="card-body">
+        <h3>Sertifikasi Barista untuk Pencari Kerja</h3>
+        <p>Pelatihan F&B untuk memperluas peluang kerja anak muda.</p>
+        <small>27 Feb 2025 • Pelatihan</small>
+      </div>
+    </article>
+
+    <article class="card" data-category="umkm" data-date="2025-02-23">
+      <a class="thumb" style="background-image:url('https://picsum.photos/seed/5/640/400');"></a>
+      <div class="card-body">
+        <h3>Pendampingan UMKM Naik Kelas</h3>
+        <p>Program digitalisasi dan ekspor untuk UMKM Serang.</p>
+        <small>23 Feb 2025 • UMKM</small>
+      </div>
+    </article>
+
+    <article class="card" data-category="k3" data-date="2025-02-18">
+      <a class="thumb" style="background-image:url('https://picsum.photos/seed/6/640/400');"></a>
+      <div class="card-body">
+        <h3>Sosialisasi Keselamatan & Kesehatan Kerja</h3>
+        <p>Kampanye budaya K3 untuk lingkungan kerja yang aman dan produktif.</p>
+        <small>18 Feb 2025 • K3</small>
+      </div>
+    </article>
+  </section>
+
+    <!-- ===== PAGINATION ===== -->
+    <nav class="pagination container" aria-label="Navigasi halaman">
+      <a href="#" aria-label="Sebelumnya">‹</a>
+      <a class="active" href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#" aria-label="Berikutnya">›</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 Disnakertrans Kabupaten Serang</small>
+    </div>
+  </footer>
+
+  <!-- ===== DRAWER FILTER (sidebar kanan) ===== -->
+  <div class="drawer__overlay" id="drawerOverlay" hidden></div>
+
+  <aside class="drawer" id="filterDrawer" role="dialog" aria-modal="true" aria-labelledby="filterTitle" aria-hidden="true">
+    <header class="drawer__header">
+      <h2 id="filterTitle">Filter Artikel</h2>
+      <button id="btnClose" class="drawer__close" aria-label="Tutup filter">✕</button>
+    </header>
+
+    <form class="drawer__body" onsubmit="return false;">
+      <!-- Jenis Konten -->
+      <fieldset class="field">
+        <legend>Jenis Konten</legend>
+        <label class="check"><input type="checkbox" name="jenis" value="ketenagakerjaan"> Ketenagakerjaan</label>
+        <label class="check"><input type="checkbox" name="jenis" value="pelatihan"> Pelatihan & Sertifikasi</label>
+        <label class="check"><input type="checkbox" name="jenis" value="transmigrasi"> Transmigrasi</label>
+        <label class="check"><input type="checkbox" name="jenis" value="umkm"> UMKM</label>
+      </fieldset>
+
+      <!-- Periode -->
+      <fieldset class="field">
+        <legend>Periode Terbit</legend>
+        <div class="row2">
+          <label> Dari <input type="date" name="from" /></label>
+          <label> Sampai <input type="date" name="to" /></label>
+        </div>
+      </fieldset>
+
+      <!-- Tag populer -->
+      <fieldset class="field">
+        <legend>Tag Populer</legend>
+        <div class="chips">
+          <button type="button" class="chip" data-tag="jobfair">#jobfair</button>
+          <button type="button" class="chip" data-tag="sertifikasi">#sertifikasi</button>
+          <button type="button" class="chip" data-tag="umkm">#umkm</button>
+        </div>
+      </fieldset>
+
+      <!-- Sorting -->
+      <fieldset class="field">
+        <legend>Urutkan</legend>
+        <label class="radio"><input type="radio" name="sort" value="new" checked> Terbaru</label>
+        <label class="radio"><input type="radio" name="sort" value="popular"> Populer</label>
+        <label class="radio"><input type="radio" name="sort" value="az"> A–Z</label>
+      </fieldset>
+
+      <div class="drawer__actions">
+        <button type="reset" class="btn btn--ghost" id="btnReset">Reset</button>
+        <button type="submit" class="btn" id="btnApply">Terapkan</button>
+      </div>
+    </form>
+  </aside>
+
+  <script src="app_galery.js"></script>
+</body>
+</html>
