@@ -2,7 +2,7 @@
 :root{
   --bg:#f6f8fb;
   --paper:#ffffff;
-  --ink:#0f172a;
+  --ink:#0f172a;          /* <- ini token warna teks utama */
   --muted:#5b6675;
   --brand:#2563eb;
   --accent:#1e90ff;
@@ -11,6 +11,7 @@
   --shadow:0 10px 26px rgba(2,8,20,.08);
   --maxw:1200px;
 }
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body {
@@ -28,39 +29,89 @@ h1, h2, h3, .title, .page-hero h1 {
 }
 
 img{max-width:100%;display:block}
-.container{max-width:var(--maxw); margin:auto; padding:0 24px}
+/* buat header full-bleed, tidak dibatasi container */
+.site-header .container {
+  max-width: none;   /* hilangkan batas 1200px */
+  width: 100%;
+  padding-inline: 24px; /* beri jarak aman kiri-kanan */
+}
 
-/* ===== NAVBAR ===== */
-.topbar{
-  position: sticky; top:0; z-index:50;
-  background:var(--paper);
-  box-shadow:0 4px 10px rgba(2,8,20,.04);
-}
-.topbar .nav{
-  display:flex; align-items:center; justify-content:space-between; gap:18px;
-  padding:10px 0;
-}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink)}
-.brand img{
-  height: 42px;
-  width: auto;            /* biar ikut rasio asli */
-  border-radius: 0;
-  object-fit: contain;
-}
-.brand span{font-weight:700; line-height:1}
-.brand small{font-weight:600; color:var(--muted)}
+body.scrolled .site-header { box-shadow: 0 6px 14px rgba(0,0,0,0.12); }
 
-nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
-nav a{
-  text-decoration:none; color:var(--ink); font-weight:700;
-  padding:8px 14px; border-radius:999px;
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;   /* biar nempel sisi container (padding container tetap 24px) */
+  margin: 0;
 }
-nav a:hover{background:rgba(37,99,235,.08); color:var(--brand)}
-nav a.active{
-  background:var(--brand); color:#fff;
-  box-shadow:0 4px 10px rgba(37,99,235,.25);
+
+/* Logo kiri */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  /* HAPUS margin-left agar tidak dobel jarak kiri */
+  /* margin-left: 20px; */
+  padding-left: 0;   /* beri ruang aman dari tepi kiri */
 }
-.accent-line{height:3px; background:linear-gradient(90deg, var(--brand), var(--accent));}
+
+.brand-logo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Tombol hamburger (mobile) */
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+}
+.nav-toggle .bar {
+  display: block;
+  width: 24px; height: 2px;
+  margin: 6px auto;
+  background: #0f172a;
+  border-radius: 2px;
+}
+
+/* Menu kanan */
+.nav-list {
+  display: flex;
+  gap: 17px;
+  margin-left: auto;     /* dorong menu ke kanan */
+  list-style: none;
+  align-items: center;
+  padding-right: 0;   /* geser lebih kanan: naikkan nilai ini */
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 19px;
+  text-decoration: none;
+  color: var(--ink);     /* <- perbaiki dari var(--text) */
+  font-weight: 500;
+  transition: background .25s ease, transform .08s ease;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  background: linear-gradient(90deg, rgba(14,164,233,.24), rgba(2,133,199,.212));
+}
+
+/* Aktif (kalau dipakai) */
+.site-header .navbar .nav-list .nav-link.active {
+  background: linear-gradient(90deg, var(--accent), #0284c7);
+  color: #fff;
+}
 
 /* ===== Page Hero ===== */
 .page-hero{padding:24px 0 10px}

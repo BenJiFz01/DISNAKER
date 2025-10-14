@@ -1,94 +1,70 @@
-// Toggle mobile menu
+// mainmenu/main.js
+
 document.addEventListener('DOMContentLoaded', () => {
+  // ====== Toggle mobile ======
   const toggle = document.querySelector('.nav-toggle');
-  const menu = document.getElementById('primary-menu');
+  const menu   = document.getElementById('primary-menu');
 
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
-      const open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
-});
 
-// =========================
-// ACTIVE STATE NAV-LINK
-// =========================
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', e => {
-    // Hapus active sebelumnya
-    document.querySelectorAll('.nav-link.active')
-      .forEach(x => x.classList.remove('active'));
+  // ====== Active state by URL ======
+  const links = document.querySelectorAll('.nav-list .nav-link');
+  if (!links.length) return;
 
-    // Tambah active ke link yang diklik
-    e.currentTarget.classList.add('active');
+  // bersihkan active lama (jangan hard-code di HTML)
+  links.forEach(l => l.classList.remove('active'));
 
-    // Tutup menu (mode mobile)
-    if (menu && menu.classList.contains('open')) {
-      menu.classList.remove('open');
-      toggleBtn.setAttribute('aria-expanded', 'false');
+  // nama file saat ini (aman untuk folder ber-spasi)
+  const currentFile = decodeURIComponent(location.pathname)
+    .split('/').pop().toLowerCase(); // contoh: "galery.html"
+
+  let matched = false;
+
+  // 1) cocokan langsung berdasarkan nama file href
+  for (const link of links) {
+    const href = (link.getAttribute('href') || '')
+      .split('#')[0].split('?')[0];
+    const file = href.substring(href.lastIndexOf('/') + 1).toLowerCase();
+    if (file && currentFile === file) {
+      link.classList.add('active');
+      matched = true;
+      break;
     }
-  });
-});
+  }
 
-// =========================
-// AUTO-SLIDE BANNER 3 GAMBAR (dengan preload & fallback)
-// =========================
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = [...document.querySelectorAll('.banner-cards .card img')];
-  const dots  = [...document.querySelectorAll('.slider-dots .dot')];
+  // 2) Paksa "Berita" aktif untuk halaman galeri/artikel
+  if (!matched && ['galery.html', 'artikel.html', 'artikel1.html'].includes(currentFile)) {
+    const berita = document.querySelector('.nav-list .nav-link[href$="galery.html"]');
+    if (berita) {
+      berita.classList.add('active');
+      matched = true;
+    }
+  }
 
-  // PASTIKAN nama file benar, hindari spasi di nama file
-  const slides = [
-    ['img/image1.jpg', 'img/image2.jpg', 'img/image3.jpg'],
-    ['img/image2.jpg', 'img/image3.jpg', 'img/image1.jpg'],
-    ['img/image3.jpg', 'img/image1.jpg', 'img/image2.jpg']
-  ];
+  // 3) Fallback: Home
+  if (!matched) {
+    const home = document.querySelector(
+      '.nav-list .nav-link[href$="index.html"], .nav-list .nav-link[href="#"], .nav-list .nav-link:first-child'
+    );
+    if (home) home.classList.add('active');
+  }
 
-  const unique = [...new Set(slides.flat())];
-  const okMap = new Map();
+  // ====== Active pindah saat diklik (SPA/anchor) ======
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
 
-  // Preload semua gambar
-  const preloadAll = Promise.all(
-    unique.map(src => new Promise(res => {
-      const im = new Image();
-      im.onload  = () => { okMap.set(src, true);  res(); };
-      im.onerror = () => { okMap.set(src, false); res(); };
-      im.src = src;
-    }))
-  );
-
-  preloadAll.then(() => {
-    let idx = 0;
-
-    const setImg = (imgEl, src) => {
-      // kalau file ada -> tampilkan, kalau tidak -> fallback card
-      if (okMap.get(src)) {
-        imgEl.parentElement.classList.remove('card--fallback');
-        imgEl.style.display = '';
-        if (imgEl.src !== location.origin + '/' + src && imgEl.src !== src) {
-          imgEl.src = src;
-        }
-      } else {
-        imgEl.style.display = 'none';
-        imgEl.parentElement.classList.add('card--fallback');
+      // tutup menu mobile jika terbuka
+      if (menu && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
       }
-    };
-
-    const apply = (i) => {
-      const set = slides[i % slides.length];
-      cards.forEach((img, k) => setImg(img, set[k]));
-      dots.forEach(d => d.classList.remove('active'));
-      dots[i % dots.length].classList.add('active');
-      idx = (i + 1) % slides.length;
-    };
-
-    // klik dot manual
-    dots.forEach((d, i) => d.addEventListener('click', () => apply(i)));
-
-    // mulai
-    apply(0);
-    setInterval(() => apply(idx), 4000);
+    });
   });
 });
-

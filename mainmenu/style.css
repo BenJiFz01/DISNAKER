@@ -154,9 +154,11 @@ body.scrolled .site-header {
 }
 
 
-.nav-link.active {
-    background: linear-gradient(90deg, var(--primary), var(--primary-600));
-    color: #ffffff;
+.site-header .navbar .nav-list .nav-link.active {
+  background: linear-gradient(90deg, var(--primary, #0ea5e9), var(--primary-600, #0284c7));
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 16px;
 }
 
 /* ========== Layout Berita + Profil ========== */
