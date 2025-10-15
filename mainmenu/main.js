@@ -1,82 +1,105 @@
-// mainmenu/main.js
-
-// === Hero Slider Autoplay + Tombol + Dots ===
+// /mainmenu/main.js
 document.addEventListener('DOMContentLoaded', () => {
+  /* =========================
+   * HERO SLIDER (autoplay + dots + caption + aksesibilitas)
+   * ========================= */
   const slider = document.getElementById('heroSlider');
-  if (!slider) return;
+  if (slider) {
+    const slides  = Array.from(slider.querySelectorAll('img.slide'));
+    const dotsBox = slider.querySelector('#heroDots, .dots');
+    const caption = slider.querySelector('#heroCaption, .caption');
+    const prevBtn = slider.querySelector('.prev');
+    const nextBtn = slider.querySelector('.next');
 
-  // ambil semua img.slide yang ADA DI DALAM heroSlider (dimanapun posisinya)
-  const slides = Array.from(slider.querySelectorAll('img.slide'));
-  if (slides.length < 2) return;
+    if (slides.length >= 2) {
+      // build dots
+      let dots = [];
+      if (dotsBox) {
+        dotsBox.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < slides.length; i++) {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'dot';
+          b.title = `Gambar ${i + 1}`;
+          b.setAttribute('aria-label', `Gambar ${i + 1} dari ${slides.length}`);
+          b.dataset.index = String(i);
+          frag.appendChild(b);
+        }
+        dotsBox.appendChild(frag);
+        dots = Array.from(dotsBox.querySelectorAll('button'));
+      }
 
-  const dotsWrap = slider.querySelector('#heroDots') || slider.querySelector('.dots');
-  const caption  = slider.querySelector('#heroCaption') || slider.querySelector('.caption');
-  const prevBtn  = slider.querySelector('.prev');
-  const nextBtn  = slider.querySelector('.next');
+      // state
+      let index = 0;
+      let timer = null;
+      const DURATION = 3000;
 
-  let index = 0;
-  let timer = null;
-  const DURATION = 3000;
+      const updateCaption = () => {
+        if (caption) caption.textContent = `Gambar ${index + 1} dari ${slides.length}`;
+      };
 
-  // --- build dots sesuai jumlah slide ---
-  if (dotsWrap) {
-    dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'dot';
-      dot.dataset.index = String(i);
-      dot.title = `Gambar ${i + 1}`;
-      dot.setAttribute('aria-label', `Gambar ${i + 1} dari ${slides.length}`);
-      dotsWrap.appendChild(dot);
-    });
+      const show = (i) => {
+        index = (i + slides.length) % slides.length;
+        slides.forEach((s, j) => s.classList.toggle('is-active', j === index));
+        dots.forEach((d, j)  => d.classList.toggle('active', j === index));
+        updateCaption();
+      };
+
+      const next = () => show(index + 1);
+      const prev = () => show(index - 1);
+
+      const start = () => {
+        stop();
+        timer = setInterval(next, DURATION);
+      };
+      const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+
+      // events: dots
+      dots.forEach((d) => {
+        d.addEventListener('click', (e) => {
+          const i = Number((e.currentTarget).dataset.index || 0);
+          show(i);
+          start();
+        });
+      });
+
+      // events: arrows (jika ada di HTML)
+      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); start(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { next(); start(); });
+
+      // pause on hover
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+
+      // pause saat tab tidak aktif
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
+
+      // keyboard (aksesibilitas)
+      slider.setAttribute('tabindex', '0');
+      slider.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { next(); start(); }
+        if (e.key === 'ArrowLeft')  { prev(); start(); }
+      });
+
+      // init
+      show(0);
+      start();
+    } else if (slides.length === 1) {
+      // kalau cuma 1 slide, pastikan terlihat
+      slides[0].classList.add('is-active');
+      if (caption) caption.textContent = '';
+    }
   }
-  const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.dot')) : [];
 
-  function updateCaption() {
-    if (caption) caption.textContent = `Gambar ${index + 1} dari ${slides.length}`;
-  }
-
-  function show(i) {
-    index = (i + slides.length) % slides.length;
-    slides.forEach((s, j) => s.classList.toggle('is-active', j === index));
-    dots.forEach((d, j) => d.classList.toggle('active', j === index));
-    updateCaption();
-  }
-
-  function next() { show(index + 1); }
-  function prev() { show(index - 1); }
-
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(next, DURATION);
-  }
-
-  // --- events panah ---
-  if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
-  if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetTimer(); });
-
-  // --- events dots (klik dot ke-3 harus jalan) ---
-  dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-      const i = Number((e.currentTarget).dataset.index);
-      show(i);
-      resetTimer();
-    });
-  });
-
-  // --- pause saat hover ---
-  slider.addEventListener('mouseenter', () => clearInterval(timer));
-  slider.addEventListener('mouseleave', resetTimer);
-
-  // --- init ---
-  show(0);          // aktifkan slide & dot pertama + caption
-  resetTimer();     // autoplay langsung jalan
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  // ====== Toggle mobile ======
+  /* =========================
+   * NAVBAR: toggle mobile + active link + efek scroll
+   * ========================= */
   const toggle = document.querySelector('.nav-toggle');
   const menu   = document.getElementById('primary-menu');
 
@@ -87,59 +110,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Active state by URL ======
-  const links = document.querySelectorAll('.nav-list .nav-link');
-  if (!links.length) return;
+  // aktifkan link sesuai URL
+  const links = Array.from(document.querySelectorAll('.nav-list .nav-link'));
+  if (links.length) {
+    links.forEach(l => l.classList.remove('active'));
 
-  // bersihkan active lama (jangan hard-code di HTML)
-  links.forEach(l => l.classList.remove('active'));
+    const currentFile = decodeURIComponent(location.pathname.split('/').pop() || '').toLowerCase();
+    let matched = false;
 
-  // nama file saat ini (aman untuk folder ber-spasi)
-  const currentFile = decodeURIComponent(location.pathname)
-    .split('/').pop().toLowerCase(); // contoh: "galery.html"
-
-  let matched = false;
-
-  // 1) cocokan langsung berdasarkan nama file href
-  for (const link of links) {
-    const href = (link.getAttribute('href') || '')
-      .split('#')[0].split('?')[0];
-    const file = href.substring(href.lastIndexOf('/') + 1).toLowerCase();
-    if (file && currentFile === file) {
-      link.classList.add('active');
-      matched = true;
-      break;
-    }
-  }
-
-  // 2) Paksa "Berita" aktif untuk halaman galeri/artikel
-  if (!matched && ['galery.html', 'artikel.html', 'artikel1.html'].includes(currentFile)) {
-    const berita = document.querySelector('.nav-list .nav-link[href$="galery.html"]');
-    if (berita) {
-      berita.classList.add('active');
-      matched = true;
-    }
-  }
-
-  // 3) Fallback: Home
-  if (!matched) {
-    const home = document.querySelector(
-      '.nav-list .nav-link[href$="index.html"], .nav-list .nav-link[href="#"], .nav-list .nav-link:first-child'
-    );
-    if (home) home.classList.add('active');
-  }
-
-  // ====== Active pindah saat diklik (SPA/anchor) ======
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      links.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-
-      // tutup menu mobile jika terbuka
-      if (menu && menu.classList.contains('is-open')) {
-        menu.classList.remove('is-open');
-        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    // 1) cocokkan nama file href
+    for (const link of links) {
+      const href = (link.getAttribute('href') || '').split('#')[0].split('?')[0];
+      const file = href.substring(href.lastIndexOf('/') + 1).toLowerCase();
+      if (file && currentFile === file) {
+        link.classList.add('active');
+        matched = true;
+        break;
       }
+    }
+
+    // 2) paksa "Berita" aktif untuk halaman galeri/artikel
+    if (!matched && ['galery.html', 'artikel.html', 'artikel1.html'].includes(currentFile)) {
+      const berita = document.querySelector('.nav-list .nav-link[href$="galery.html"]');
+      if (berita) {
+        berita.classList.add('active');
+        matched = true;
+      }
+    }
+
+    // 3) fallback: Home (root/blank/#)
+    if (!matched) {
+      const home = document.querySelector(
+        '.nav-list .nav-link[href$="index.html"], .nav-list .nav-link[href="#"], .nav-list .nav-link:first-child'
+      );
+      if (home) home.classList.add('active');
+    }
+
+    // pindah active saat klik + tutup menu mobile
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        if (menu && menu.classList.contains('is-open')) {
+          menu.classList.remove('is-open');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
-  });
+  }
+
+  // efek header saat scroll (untuk .site-header & CSS body.scrolled)
+  const onScroll = () => {
+    if (window.scrollY > 4) document.body.classList.add('scrolled');
+    else document.body.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 });
