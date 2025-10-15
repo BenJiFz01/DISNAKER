@@ -16,10 +16,17 @@
 <body>
     <!-- Banner / Hero -->
     <section class="banner-section" aria-label="Gambar latar">
-        <div class="banner-bg">
-            <img src="/img/intiimage.jpg" alt="Latar Disnakertrans Kabupaten Serang" loading="lazy" decoding="async" />
+        <div class="banner-bg" id="heroSlider" aria-live="polite">
+            <img class="slide is-active" src="/img/intiimage.jpg" alt="Latar Disnakertrans Kabupaten Serang" />
+            <img class="slide" src="/img/inti2.jpg" alt="Suasana pelayanan Disnakertrans Kabupaten Serang" />
+            <img class="slide" src="/img/inti3.jpg" alt="Suasana Disnakertrans Kabupaten Serang" />
+
+            <!-- Dots & Caption -->
+            <div class="dots" id="heroDots"></div>
+            <div class="caption" id="heroCaption" aria-live="polite"></div>
         </div>
     </section>
+
 
     <!-- Header / Navbar -->
     <header class="site-header">
@@ -46,135 +53,187 @@
         </nav>
     </header>
 
-    <!-- Berita & Profil -->
-    <main id="berita" class="np-wrap" aria-label="Berita terbaru dan profil">
-        <div class="container np-grid">
+        <!-- Berita & Profil -->
+        <main id="berita" class="np-wrap" aria-label="Berita terbaru dan profil">
+            <div class="container np-grid">
 
-            <!-- Panel Berita -->
-            <section class="np-news" aria-labelledby="berita-terbaru-heading">
-                <div class="np-card">
-                    <header class="np-card-head">
-                        <button type="button" class="np-tab is-active" aria-pressed="true">BERITA TERBARU</button>
-                    </header>
+                <!-- Panel Berita -->
+                <section class="np-news" aria-labelledby="berita-terbaru-heading">
+                    <div class="np-card">
+                        <header class="np-card-head">
+                            <button type="button" class="np-tab is-active" aria-pressed="true">BERITA TERBARU</button>
+                        </header>
 
-                    <div class="np-list" role="list">
-                        <!-- Item 1 -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/image1.jpg" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">Pemkab Serang Gelar Penggalian Aspirasi Masyarakat Terkait Pungli
-                                    Penerimaan Tenaga Kerja</h3>
-                                <p class="np-excerpt">Pemerintah Kabupaten Serang terus berupaya memberantas praktik
-                                    pungutan liar (pungli) atau percaloan dalam proses penerimaan tenaga kerja di
-                                    perusahaan. Maraknya kasus pungli dalam rekrutmen tenaga kerja menjadi tantangan
-                                    serius yang menghambat pelayanan publik yang bersih dan adil.
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
+                        <div class="np-list" role="list">
+                            <!-- Item 1 -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/image1.jpg" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">Pemkab Serang Gelar Penggalian Aspirasi Masyarakat Terkait Pungli
+                                        Penerimaan Tenaga Kerja</h3>
+                                    <p class="np-excerpt">Pemerintah Kabupaten Serang terus berupaya memberantas praktik
+                                        pungutan liar (pungli) atau percaloan dalam proses penerimaan tenaga kerja di
+                                        perusahaan. Maraknya kasus pungli dalam rekrutmen tenaga kerja menjadi tantangan
+                                        serius yang menghambat pelayanan publik yang bersih dan adil.
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
 
-                        <!-- Item 2 -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/image2.jpg" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">Penutupan Pelatihan Menjahit di Kecamatan Ciomas</h3>
-                                <p class="np-excerpt">Telah dilaksanakan Penutupan Pelatihan Menjahit Berbasis
-                                    Kompetensi yang diselenggarakan oleh Dinas Tenaga Kerja dan Transmigrasi Kabupaten
-                                    Serang di Kecamatan Ciomas.
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
+                            <!-- Item 2 -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/image2.jpg" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">Penutupan Pelatihan Menjahit di Kecamatan Ciomas</h3>
+                                    <p class="np-excerpt">Telah dilaksanakan Penutupan Pelatihan Menjahit Berbasis
+                                        Kompetensi yang diselenggarakan oleh Dinas Tenaga Kerja dan Transmigrasi Kabupaten
+                                        Serang di Kecamatan Ciomas.
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
 
-                        <!-- Item 3 (DIBETULKAN) -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/image3.jpg" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">Tata Cara Pembuatan Kartu Pencari Kerja (AK.1) Online melalui
-                                    Aplikasi Serang Tatu</h3>
-                                <p class="np-excerpt">kartu tanda pencari kerja yang diterbitkan oleh Dinas
-                                    Ketenagakerjaan (Disnaker) untuk mendata dan memfasilitasi pencari kerja. Kartu ini
-                                    berisi data pribadi, pendidikan, dan keterampilan pemiliknya, serta sering menjadi
-                                    syarat melamar kerja di instansi pemerintah, BUMN, hingga perusahaan swasta.
-                                    Keberadaan kartu ini menandakan bahwa seseorang aktif mencari pekerjaan dan dapat
-                                    membantu pemiliknya dihubungi Disnaker jika ada lowongan yang sesuai.
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
+                            <!-- Item 3 (DIBETULKAN) -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/image3.jpg" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">Tata Cara Pembuatan Kartu Pencari Kerja (AK.1) Online melalui
+                                        Aplikasi Serang Tatu</h3>
+                                    <p class="np-excerpt">kartu tanda pencari kerja yang diterbitkan oleh Dinas
+                                        Ketenagakerjaan (Disnaker) untuk mendata dan memfasilitasi pencari kerja. Kartu ini
+                                        berisi data pribadi, pendidikan, dan keterampilan pemiliknya, serta sering menjadi
+                                        syarat melamar kerja di instansi pemerintah, BUMN, hingga perusahaan swasta.
+                                        Keberadaan kartu ini menandakan bahwa seseorang aktif mencari pekerjaan dan dapat
+                                        membantu pemiliknya dihubungi Disnaker jika ada lowongan yang sesuai.
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
 
-                        <!-- Item 4 -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/barista.png" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">☕ Sehari di Disnakertrans Kabupaten Serang: Rumahnya Peningkatan
-                                    Kompetensi Tenaga Kerja</h3>
-                                <p class="np-excerpt">Pagi ini suasana di Dinas Tenaga Kerja dan Transmigrasi
-                                    (Disnakertrans) Kabupaten Serang tampak lebih ramai dari biasanya...
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
+                            <!-- Item 4 -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/barista.png" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">☕ Sehari di Disnakertrans Kabupaten Serang: Rumahnya Peningkatan
+                                        Kompetensi Tenaga Kerja</h3>
+                                    <p class="np-excerpt">Pagi ini suasana di Dinas Tenaga Kerja dan Transmigrasi
+                                        (Disnakertrans) Kabupaten Serang tampak lebih ramai dari biasanya...
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
 
-                        <!-- Item 5 -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/contoh-berita.jpg" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">JUDUL</h3>
-                                <p class="np-excerpt">Vinix7 adalah platform pengembangan talenta yang memfasilitasi
-                                    magang mandiri dan tren kerja masa kini melalui program pelatihan, pembinaan, dan
-                                    sertifikasi.
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
+                            <!-- Item 5 -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/contoh-berita.jpg" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">JUDUL</h3>
+                                    <p class="np-excerpt">Vinix7 adalah platform pengembangan talenta yang memfasilitasi
+                                        magang mandiri dan tren kerja masa kini melalui program pelatihan, pembinaan, dan
+                                        sertifikasi.
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
 
-                        <!-- Item 6 -->
-                        <article class="np-item" role="listitem">
-                            <div class="np-thumb">
-                                <img src="/img/contoh-berita.jpg" alt="Berita Terbaru">
-                            </div>
-                            <div class="np-body">
-                                <h3 class="np-title">JUDUL</h3>
-                                <p class="np-excerpt">Vinix7 adalah platform pengembangan talenta yang memfasilitasi
-                                    magang mandiri dan tren kerja masa kini melalui program pelatihan, pembinaan, dan
-                                    sertifikasi.
-                                </p>
-                            </div>
-                            <a class="np-pill" href="#">LIHAT</a>
-                        </article>
-                    </div><!-- /.np-list -->
+                            <!-- Item 6 -->
+                            <article class="np-item" role="listitem">
+                                <div class="np-thumb">
+                                    <img src="/img/contoh-berita.jpg" alt="Berita Terbaru">
+                                </div>
+                                <div class="np-body">
+                                    <h3 class="np-title">JUDUL</h3>
+                                    <p class="np-excerpt">Vinix7 adalah platform pengembangan talenta yang memfasilitasi
+                                        magang mandiri dan tren kerja masa kini melalui program pelatihan, pembinaan, dan
+                                        sertifikasi.
+                                    </p>
+                                </div>
+                                <a class="np-pill" href="#">LIHAT</a>
+                            </article>
+                        </div><!-- /.np-list -->
 
-                    <footer class="np-card-foot">
-                        <a class="np-detail" href="/Galery Artikel/galery.html">DETAIL »</a>
-                    </footer>
-                </div><!-- /.np-card -->
-            </section>
+                        <footer class="np-card-foot">
+                            <a class="np-detail" href="/Galery Artikel/galery.html">DETAIL »</a>
+                        </footer>
+                    </div><!-- /.np-card -->
+                </section>
 
-            <!-- Kartu Profil -->
-            <aside class="np-profile" aria-label="Profil Kepala Dinas">
-                <div class="np-profile-card">
-                    <img class="np-profile-photo" src="/img/kepala.jpeg" alt="Foto Kepala Dinas" loading="lazy"
-                        decoding="async" />
-                    <div class="np-profile-meta">
-                        <strong class="np-profile-name">DANA ARFINASTY LUSIANI, SE., MM</strong>
-                        <span class="np-profile-role">Kepala Dinas Tenaga Kerja dan Transmigrasi</span>
+                <!-- Kartu Profil -->
+                <aside class="np-profile" aria-label="Profil Kepala Dinas">
+                    <div class="np-profile-card">
+                        <img class="np-profile-photo" src="/img/kepala.jpeg" alt="Foto Kepala Dinas" loading="lazy"
+                            decoding="async" />
+                        <div class="np-profile-meta">
+                            <strong class="np-profile-name">DANA ARFINASTY LUSIANI, SE., MM</strong>
+                            <span class="np-profile-role">Kepala Dinas Tenaga Kerja dan Transmigrasi</span>
+                        </div>
                     </div>
-                </div>
-            </aside>
+                </aside>
 
-        </div><!-- /.container .np-grid -->
-    </main>
+            </div><!-- /.container .np-grid -->
+        </main>
+
+        <!-- ===== Layanan ===== -->
+        <section class="services-section" id="layanan" aria-labelledby="layananLabel">
+            <div class="container">
+                <div class="services-head">
+                    <span id="layananLabel" class="pill">LAYANAN</span>
+                </div>
+
+                <ul class="service-grid">
+                    <!-- 1 -->
+                    <li class="service-card">
+                        <a class="service-link" href="#" aria-label="E-SAKIP">
+                            <div class="thumb">
+                                <img src="/img/esakip.png" alt="E-SAKIP" loading="lazy">
+                            </div>
+                            <strong class="title">E-SAKIP</strong>
+                        </a>
+                    </li>
+
+                    <!-- 2 -->
+                    <li class="service-card">
+                        <a class="service-link" href="#" aria-label="Kartu Kuning (AK1) ONLINE">
+                            <div class="thumb">
+                                <img src="/img/kartuak1.png" alt="Kartu Kuning (AK1) Online" loading="lazy">
+                            </div>
+                            <strong class="title">Kartu Kuning (AK1) ONLINE</strong>
+                        </a>
+                    </li>
+
+                    <!-- 3 -->
+                    <li class="service-card">
+                        <a class="service-link" href="#" aria-label="OSS RBA (Perizinan)">
+                            <div class="thumb">
+                                <img src="/img/oss rba.png" alt="OSS RBA (Perizinan)" loading="lazy">
+                            </div>
+                            <strong class="title">OSS RBA (PERIZINAN)</strong>
+                        </a>
+                    </li>
+
+                    <!-- 4 -->
+                    <li class="service-card">
+                        <a class="service-link" href="#" aria-label="Karir Hub">
+                            <div class="thumb">
+                                <img src="/img/karir hub.png" alt="Karir Hub" loading="lazy">
+                            </div>
+                            <strong class="title">KARIR HUB</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
 
 
     <!-- Scripts -->

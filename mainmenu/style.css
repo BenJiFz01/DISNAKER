@@ -14,8 +14,15 @@
     --radius: 16px;
     --shadow: 0 10px 18px rgba(0, 0, 0, .08);
     --thumb-w: 130px;
-
     --thumb-h: 90px;
+    --bg: #f6f8fb;
+    --paper: #fff;
+    --ink: #0f172a;
+    --muted: #5b6675;
+    --brand: #2563eb;
+    --radius: 16px;
+    --shadow: 0 12px 30px rgba(2, 8, 20, .08);
+    --maxw: 1200px;
 }
 
 /* ========== Reset & Base ========== */
@@ -46,94 +53,159 @@ img {
     margin-inline: auto;
 }
 
-/* ========== Banner / Hero ========== */
+/* === Hero Slider === */
 .banner-section {
-    position: relative
+    position: relative;
 }
 
 .banner-bg {
-    height: 258px;
-    /* tinggi banner */
-    background: #ffffff;
+    position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow, 0 12px 30px rgba(2, 8, 20, .08));
+    height: clamp(180px, 28vw, 260px);
 }
 
-.banner-bg img {
+.banner-bg .slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    display: block;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    will-change: opacity;
 }
+
+.banner-bg .slide.is-active {
+    opacity: 1;
+}
+
+/* Tombol panah kiri-kanan */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 50%;
+    z-index: 5;
+    transition: background 0.3s;
+}
+
+/* Indikator bulet */
+.dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 6;
+}
+
+.dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dots button.active {
+    background: #000000bb;
+    /* biru utama */
+    transform: scale(1.3);
+}
+
+/* Aksesibilitas: hormati prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .banner-bg .slide {
+        transition: none;
+    }
+}
+
 
 /* ========== Header / Navbar ========== */
 .site-header {
-  position: sticky;        /* agar navbar tetap di atas saat scroll */
-  top: 0;
-  z-index: 100;
-  background: #ffffff;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.09); /* bayangan lembut di bawah */
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+    position: sticky;
+    /* agar navbar tetap di atas saat scroll */
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.09);
+    /* bayangan lembut di bawah */
+    transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 body.scrolled .site-header {
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* ===== Navbar ===== */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0;              /* hilangkan padding supaya mentok sisi layar */
-  margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    /* hilangkan padding supaya mentok sisi layar */
+    margin: 0;
 }
 
 /* Logo (brand) */
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: inherit;
-  margin-left: 20px;          /* pastikan tidak ada jarak kiri */
-  padding-left: 20px;      /* boleh beri sedikit ruang aman dari tepi layar */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    margin-left: 40px;
+    /* pastikan tidak ada jarak kiri */
+    padding-left: 20px;
+    /* boleh beri sedikit ruang aman dari tepi layar */
 }
 
 .brand-logo {
-  height: 48px;
-  width: auto;
-  display: block;
+    height: 48px;
+    width: auto;
+    display: block;
 }
 
 /* Tombol hamburger (mobile) */
 .nav-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  border: 0;
-  background: transparent;
-  border-radius: 8px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
 }
 
 .nav-toggle .bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  margin: 6px auto;
-  background: #0f172a;
-  border-radius: 2px;
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 6px auto;
+    background: #0f172a;
+    border-radius: 2px;
 }
 
 /* Daftar menu kanan */
 .nav-list {
-  display: flex;
-  gap: 17px;
-  margin-left: auto;       /* dorong semua menu ke kanan */
-  list-style: none;
-  align-items: center;
-  padding-right: 40px;     /* ruang aman sisi kanan */
+    display: flex;
+    gap: 17px;
+    margin-left: auto;
+    /* dorong semua menu ke kanan */
+    list-style: none;
+    align-items: center;
+    padding-right: 40px;
+    /* ruang aman sisi kanan */
 }
 
 
@@ -155,10 +227,10 @@ body.scrolled .site-header {
 
 
 .site-header .navbar .nav-list .nav-link.active {
-  background: linear-gradient(90deg, var(--primary, #0ea5e9), var(--primary-600, #0284c7));
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 16px;
+    background: linear-gradient(90deg, var(--primary, #0ea5e9), var(--primary-600, #0284c7));
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 16px;
 }
 
 /* ========== Layout Berita + Profil ========== */
@@ -166,20 +238,28 @@ body.scrolled .site-header {
     padding-block: 28px 56px;
 }
 
+#berita,
+.np-wrap,
+.np-grid,
+.np-card {
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
+}
+
+#berita .container {
+    padding-left: 0;
+    margin-left: 80px;
+    max-width: 1400px;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+}
+
 /* pembatas lebar + padding sisi */
 .np-wrap .container {
     max-width: 1200px;
     margin-inline: auto;
-    padding-inline: 20px;
+    padding-inline: 10px;
     /* ruang kiri-kanan di dalam container */
-}
-
-.np-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 270px; /* kolom kiri (berita) lebih lebar */
-  align-items: start;
-  gap: 40px; /* jarak antar kolom */
-  padding-inline: 20px;
 }
 
 /* geser sedikit: berita -> kiri, profil -> kanan */
@@ -187,8 +267,18 @@ body.scrolled .site-header {
     margin-left: -20px;
 }
 
+.np-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 270px;
+    align-items: start;
+    gap: 40px;
+    padding-inline: 0;
+    justify-content: space-between;
+}
+
 .np-profile {
-    margin-right: -40px;
+    margin-left: 40px;
+    /* atur nilai: 30–60px tergantung sejajar dengan logo/header */
 }
 
 /* Panel Berita (mepet kiri, clean) */
@@ -198,6 +288,9 @@ body.scrolled .site-header {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
+    height: auto;
+    /* biar menyesuaikan isi */
+    min-height: 600px;
 }
 
 .np-card-head {
@@ -244,6 +337,7 @@ body.scrolled .site-header {
     scrollbar-width: thin;
     /* firefox */
     scrollbar-color: var(--primary-600) #f1f5f9;
+    max-height: 520px;
 }
 
 /* webkit scrollbar */
@@ -267,88 +361,98 @@ body.scrolled .site-header {
 
 /* Item berita */
 .np-item {
-  display: grid;
-  grid-template-columns: 150px 1fr; /* ukuran thumbnail dan isi */
-  grid-template-rows: auto auto;
-  gap: 10px 14px;
-  align-items: start;
-  padding: 14px 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  background: #ffffff;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    /* ukuran thumbnail dan isi */
+    grid-template-rows: auto auto;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
 
-  /* 🌤️ Shadow lembut */
-  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease, transform 0.15s ease;
+    /* 🌤️ Shadow lembut */
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.15s ease;
 }
 
 .np-item:hover {
-  border-color: #dbe6ef;
-  box-shadow: 0 4px 10px rgba(0,0,0,.06);
-  transform: translateY(-1px);
+    border-color: #dbe6ef;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .06);
+    transform: translateY(-1px);
 }
 
 .np-thumb {
-  grid-row: span 2; /* gambar sejajar 2 baris kiri */
-  width: 145px;
-  height: 120px;
-  border-radius: 12px;
-  background: #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    grid-row: span 2;
+    /* gambar sejajar 2 baris kiri */
+    width: 145px;
+    height: 120px;
+    border-radius: 12px;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .np-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 
 .np-body {
-  min-width: 0;
+    min-width: 0;
 }
 
 .np-title {
-  margin: 0px;
-  font-size: 16px;
-  line-height: 1.3;
-  color: var(--text);
-  font-weight: 700;
+    margin: 0px;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--text);
+    font-weight: 700;
 }
 
 .np-excerpt {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;     
-  overflow: hidden;
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
 }
 
 /* Tombol “LIHAT” */
 .np-pill {
-  grid-column: 2;           /* letakkan di kolom kanan (isi berita) */
-  justify-self: end;        /* dorong ke kanan */
-  align-self: end;          /* dorong ke bawah */
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-600));
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 13px;
-  transition: filter .2s ease, transform .08s ease;
-  white-space: nowrap;
+    grid-column: 2;
+    /* letakkan di kolom kanan (isi berita) */
+    justify-self: end;
+    /* dorong ke kanan */
+    align-self: end;
+    /* dorong ke bawah */
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-600));
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: filter .2s ease, transform .08s ease;
+    white-space: nowrap;
 }
 
-.np-pill:hover { filter: brightness(1.06); }
-.np-pill:active { transform: translateY(1px); }
+.np-pill:hover {
+    filter: brightness(1.06);
+}
+
+.np-pill:active {
+    transform: translateY(1px);
+}
 
 .np-card-foot {
     padding: 12px 14px;
@@ -386,43 +490,49 @@ body.scrolled .site-header {
 
 /* Kartu Profil (kanan) */
 .np-profile-card {
-  position: sticky;
-  top: 88px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px;
-  text-align: center;
-  max-width: 280px;  /* biar tidak terlalu besar */
-  margin-left: auto; /* dorong ke kanan dalam grid */
+    margin-right: 10px;
+    width: 280px;
+    /* default kamu 270px, ubah jadi 320–360px */
+    padding: 16px 18px;
+    /* tambah ruang dalam card */
+    border-radius: 16px;
+    /* biar tetap halus */
+    box-shadow: var(--shadow);
+    background: #fff;
+    text-align: center;
+    transition: transform .3s ease;
 }
 
 .np-profile-photo {
-  width: 90%;             /* lebih kecil dari lebar kartu */
-  aspect-ratio: 3/4;    /* sedikit lebih pendek dari sebelumnya */
-  object-fit: cover;
-  border-radius: 10px;
-  background: #f1f5f9;
-  display: block;
-  margin-inline: auto;    /* agar tetap center */
+    width: 90%;
+    /* lebih kecil dari lebar kartu */
+    aspect-ratio: 3/4;
+    /* sedikit lebih pendek dari sebelumnya */
+    object-fit: cover;
+    border-radius: 10px;
+    background: #f1f5f9;
+    display: block;
+    margin-inline: auto;
+    /* agar tetap center */
 }
 
 .np-profile-meta {
-  margin-top: 12px;
+    margin-top: 12px;
 }
 
 .np-profile-name {
-  display: block;
-  font-size: 14px;       /* sedikit lebih kecil agar serasi */
-  font-weight: 700;
+    display: block;
+    font-size: 14px;
+    /* sedikit lebih kecil agar serasi */
+    font-weight: 700;
 }
 
 .np-profile-role {
-  display: block;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 2px;
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 500;
 }
 
 /* ========== Responsif ========== */
@@ -435,6 +545,7 @@ body.scrolled .site-header {
     .np-profile-card {
         position: static;
         order: 2;
+        margin-left: 100px;
     }
 
     .np-list {
@@ -457,6 +568,7 @@ body.scrolled .site-header {
 
     .np-profile {
         margin-right: 0;
+        margin-left: 100px;
     }
 }
 
@@ -525,4 +637,119 @@ body.scrolled .site-header {
         margin-top: 8px;
         justify-self: start
     }
+}
+
+
+.pill {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: .4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-600));
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+}
+
+/* ===== Services (align ke kiri seperti Berita) ===== */
+.services-section {
+    padding-block: 10px 10px;
+    background: var(--bg);
+}
+
+/* KUNCI ALIGN: samakan kiri dengan container Berita */
+.services-section .container {
+    /* hilangkan padding negatif yang tidak valid */
+    padding-left: 20px;
+    /* gutter sama dengan section Berita */
+    padding-right: 20px;
+    max-width: none;
+    /* biar bisa pakai margin-left kalkulasi */
+    margin-right: auto;
+    /* geser blok ini supaya tepi kirinya = tepi kiri .container Berita */
+    margin-left: calc((100vw - var(--maxw, 1200px)) / 2);
+    width: 100%;
+}
+
+/* Saat layar lebih kecil dari --maxw, kembali ke layout center standar */
+@media (max-width: 1240px) {
+    .services-section .container {
+        max-width: var(--maxw, 1200px);
+        margin-left: auto;
+    }
+}
+
+/* Grid & kartu – tetap seperti sebelumnya (boleh pakai punyamu) */
+.service-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+@media (max-width: 1024px) {
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.service-card {
+    display: block;
+}
+
+.service-link {
+    display: grid;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+.thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(2, 8, 20, .08);
+    background: #dbeafe;
+    aspect-ratio: 16/9;
+    transition: .35s ease;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+}
+
+.service-card:hover .thumb img {
+    transform: scale(1.05);
+}
+
+.service-card:hover .thumb {
+    box-shadow: 0 16px 40px rgba(2, 8, 20, .12);
+    transform: translateY(-3px);
+}
+
+.title {
+    font-size: .95rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    color: #0b1435;
+}
+
+.caption {
+    font-size: .85rem;
+    color: var(--muted);
+    margin-top: -2px;
 }
