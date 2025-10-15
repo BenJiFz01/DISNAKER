@@ -4,43 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sehari di Disnakertrans Kabupaten Serang — Disnakertrans Kab. Serang</title>
+  <meta name="description" content="Sehari di Disnakertrans Kabupaten Serang: pelatihan, sertifikasi, dan peningkatan kompetensi tenaga kerja.">
 
-  <!-- Font sesuai preferensi kamu -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS utama (sudah termasuk @import font) -->
   <link rel="stylesheet" href="all_artikel.css" />
-  <script src="/mainmenu/main.js" defer></script>
-  <link rel="stylesheet" href="/mainmenu/style.css">  
+
+  <!-- JS halaman artikel (ganti sesuai nama/relatif folder jika berbeda) -->
+  <script src="JavaArtikel.js" defer></script>
 </head>
 <body>
 
-  <!-- NAVBAR (sama seperti halaman lain) -->
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-       <img src="/img/logokabserang.png" alt="Logo Disnakertrans Kabupaten Serang" />
-        <span>
-          Dinas Tenaga Kerja dan Transmigrasi<br/>
-          <small>Kabupaten Serang</small>
-        </span>
+  <!-- ===== NAVBAR (konsep sama seperti galery) ===== -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <!-- Brand -->
+      <a href="../../mainmenu/index.html" class="brand" aria-label="Beranda">
+        <img class="brand-logo" src="https://disnakertrans.serangkab.go.id/front/assets/img/logo-opd.svg"
+             alt="Logo Kabupaten Serang" width="48" height="48" decoding="async" />
       </a>
-      <nav aria-label="Navigasi utama">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">Profil</a></li>
-          <li><a class="active" href="gallery.html">Berita</a></li>
-          <li><a href="#">Layanan Pengaduan</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="accent-line" aria-hidden="true"></div>
+
+      <!-- Toggle (mobile) -->
+      <button class="nav-toggle" aria-label="Buka menu" aria-controls="primary-menu" aria-expanded="false" type="button">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <!-- Menu -->
+      <ul id="primary-menu" class="nav-list" role="menu">
+        <li role="none"><a class="nav-link" href="../../mainmenu/index.html" role="menuitem">Home</a></li>
+        <li role="none"><a class="nav-link" href="#profil" role="menuitem">Profil</a></li>
+        <li role="none"><a class="nav-link active" href="../galery.html" role="menuitem">Berita</a></li>
+        <li role="none"><a class="nav-link" href="#layanan" role="menuitem">Layanan Pengaduan</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="container article-container">
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Beranda</a>
+      <a href="../../mainmenu/index.html">Beranda</a>
       <span>›</span>
-      <a href="/Galery Artikel/galery.html">Galeri Artikel & Berita</a>
+      <a href="../galery.html">Galeri Artikel & Berita</a>
       <span>›</span>
       <span aria-current="page">Sehari di Disnakertrans Kabupaten Serang</span>
     </nav>
@@ -102,7 +105,7 @@
         <blockquote class="highlight">Skill Lokal, Kualitas Nasional.<br/>Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang.</blockquote>
 
         <!-- Share -->
-        <div class="share">
+        <div class="share" aria-label="Bagikan artikel">
           <span>Bagikan:</span>
           <a href="#" aria-label="Bagikan ke WhatsApp">WA</a>
           <a href="#" aria-label="Bagikan ke Facebook">FB</a>
@@ -146,7 +149,7 @@
     </section>
 
     <!-- Nav Prev/Next -->
-    <nav class="article-nav">
+    <nav class="article-nav" aria-label="Navigasi artikel">
       <a class="prev card pad" href="#">‹ Pelatihan Operator CNC Batch 2</a>
       <a class="next card pad" href="#">Fasilitasi Transmigrasi Mandiri ›</a>
     </nav>
@@ -157,5 +160,6 @@
       <small>© 2025 Disnakertrans Kabupaten Serang</small>
     </div>
   </footer>
+
 </body>
 </html>
