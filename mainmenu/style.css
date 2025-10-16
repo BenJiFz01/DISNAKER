@@ -21,6 +21,7 @@
     /* padding horizontal container */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
 /* ========== Reset & Base ========== */
 * {
     box-sizing: border-box
@@ -30,13 +31,23 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
     color: var(--text);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
+
+/* Font heading (judul besar dan subjudul) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, button, .btn, .nav-link, .np-tab, .np-title, .np-excerpt, .np-detail, .np-pill {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
 
 img {
     max-width: 100%;

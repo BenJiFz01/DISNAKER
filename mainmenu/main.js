@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     },
     {
-      threshold: 0.25, // mulai animasi saat 25% terlihat
+      threshold: 0.12, // mulai animasi saat 25% terlihat
       rootMargin: '0px 0px -10% 0px'
     }
   );
