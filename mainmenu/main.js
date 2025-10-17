@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * ========================= */
   const slider = document.getElementById('heroSlider');
   if (slider) {
-    const slides  = Array.from(slider.querySelectorAll('img.slide'));
+    const slides = Array.from(slider.querySelectorAll('img.slide'));
     const dotsBox = slider.querySelector('#heroDots, .dots');
     const caption = slider.querySelector('#heroCaption, .caption');
     const prevBtn = slider.querySelector('.prev');
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const show = (i) => {
         index = (i + slides.length) % slides.length;
         slides.forEach((s, j) => s.classList.toggle('is-active', j === index));
-        dots.forEach((d, j)  => d.classList.toggle('active', j === index));
+        dots.forEach((d, j) => d.classList.toggle('active', j === index));
         updateCaption();
       };
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slider.setAttribute('tabindex', '0');
       slider.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') { next(); start(); }
-        if (e.key === 'ArrowLeft')  { prev(); start(); }
+        if (e.key === 'ArrowLeft') { prev(); start(); }
       });
 
       // init
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * NAVBAR: toggle mobile + active link + efek scroll
    * ========================= */
   const toggle = document.querySelector('.nav-toggle');
-  const menu   = document.getElementById('primary-menu');
+  const menu = document.getElementById('primary-menu');
 
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
@@ -166,4 +166,39 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+});
+
+// === Animasi Scroll: Berita Muncul dari Kiri (1 per 1 & terus aktif) ===
+document.addEventListener('DOMContentLoaded', () => {
+  const newsItems = document.querySelectorAll('.np-item');
+  if (!newsItems.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+
+        // Saat elemen masuk viewport
+        if (entry.isIntersecting) {
+          // hilangkan class show dulu biar bisa retrigger
+          el.classList.remove('show');
+
+          // beri sedikit jeda (biar smooth satu-satu)
+          const delay = [...newsItems].indexOf(el) * 120; // jeda antar item 150ms
+          setTimeout(() => {
+            el.classList.add('show');
+          }, delay);
+        } else {
+          // saat keluar viewport → sembunyikan lagi agar bisa animasi ulang
+          el.classList.remove('show');
+        }
+      });
+    },
+    {
+      threshold: 0.12, // mulai animasi saat 25% terlihat
+      rootMargin: '0px 0px -10% 0px'
+    }
+  );
+
+  newsItems.forEach(item => observer.observe(item));
 });
