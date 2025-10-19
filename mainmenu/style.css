@@ -22,30 +22,59 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
+
 /* ========== Reset & Base ========== */
 * {
     box-sizing: border-box
 }
 
+#page,
+.page,
+.container,
+.wrapper {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 html,
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
     color: var(--text);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    height: 100%;
 }
 
 /* Font heading (judul besar dan subjudul) */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
 }
 
-body, h1, h2, h3, h4, h5, h6, button, .btn, .nav-link, .np-tab, .np-title, .np-excerpt, .np-detail, .np-pill {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.btn,
+.nav-link,
+.np-tab,
+.np-title,
+.np-excerpt,
+.np-detail,
+.np-pill {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
 }
 
 
@@ -773,5 +802,185 @@ body.scrolled .site-header {
     .np-pill {
         margin-top: 8px;
         justify-self: start
+    }
+}
+
+/* ===== Footer / Layanan Pengaduan (pas di garis) ===== */
+.lp {
+  padding-top: 0;
+}
+
+footer.lp {
+  margin-top: 80px !important;
+  padding-top: 0 !important;
+}
+
+.lp-bottom {
+  margin-top: 0 !important;
+  padding-top: 60px !important;
+}
+.lp-bottom {
+    position: relative;
+    background: #7EC8E3;
+    border-radius: 48px 48px 0 0;
+    padding: 72px 0 18px;
+    overflow: visible !important;
+    z-index: 1;
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.lp-title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -55%);
+    /* -55% supaya pas di "garis" */
+    z-index: 3;
+    background: #0b77c5;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+
+.lp-card {
+  width: min(980px, calc(100% - 40px));
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(2, 8, 20, .10);
+  padding: 20px 24px 18px;
+  position: relative;
+  top: -18px;
+  z-index: 2;
+  border-radius: 24px;
+}
+
+.wrapper,
+.container,
+.page,
+.content,
+main,
+section {
+    overflow: visible !important;
+}
+
+/* Baris ikon sosmed: jarak pas & tinggi konsisten */
+/* ===== Tombol Sosial Media Kotak Elegan ===== */
+.lp-social {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 4px 0 14px;
+}
+
+/* Kotak ikon */
+.lp-social .soc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    /* sudut membulat */
+    background: #ffffff;
+    border: 2px solid #dce1e7;
+    /* border abu netral */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+/* Hover efek lembut */
+.lp-social .soc:hover {
+    transform: translateY(-4px);
+    border-color: #7EC8E3;
+    /* biru lembut */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+}
+
+/* Gambar ikon */
+.lp-social img {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+/* Garis tipis pemisah antara sosmed dan info */
+.lp-card::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #eef2f7;
+    margin: 4px auto 14px;
+    width: 92%;
+}
+
+/* Info email & alamat: grid 2 kolom rapi */
+.lp-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* dua kolom di desktop */
+    gap: 24px 40px;
+    align-items: start;
+    justify-items: center;
+    text-align: left;
+    width: min(820px, 100%);
+    margin: 0 auto;
+}
+
+.lp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #0f172a;
+    max-width: 400px;
+}
+
+.lp-item .ico {
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+}
+
+.lp-item span {
+    word-break: break-word;
+}
+
+.lp-copy {
+  margin: 0 !important;
+  padding: 10px 0 !important;
+  border-radius: 0 !important;
+  background: #007ac1;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  position: relative;
+  bottom: 0;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .lp-card {
+        width: calc(100% - 24px);
+        padding: 16px 16px 14px;
+        top: -14px;
+    }
+
+    .lp-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .lp-item {
+        justify-content: center;
     }
 }
