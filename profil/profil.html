@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="/mainmenu/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- ===== Header / Navbar ===== -->
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Navigasi utama">
+            <!-- Brand -->
+            <a href="#" class="brand" aria-label="Beranda">
+                <img class="brand-logo" src="https://disnakertrans.serangkab.go.id/front/assets/img/logo-opd.svg"
+                    alt="Logo Kabupaten Serang" width="48" height="48" decoding="async" />
+            </a>
+
+            <!-- Toggle (mobile) -->
+            <button class="nav-toggle" type="button" aria-label="Buka menu" aria-controls="primary-menu"
+                aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+
+            <!-- Menu -->
+            <ul id="primary-menu" class="nav-list" role="menu">
+                <li role="none"><a class="nav-link" href="/mainmenu/index.html" role="menuitem">Home</a></li>
+                <li role="none"><a class="nav-link active" href="#" role="menuitem">Profile</a></li>
+                <li role="none"><a class="nav-link" href="/Galery Artikel/galery.html" role="menuitem">Berita</a></li>
+                <li role="none"><a class="nav-link" href="#layanan" role="menuitem">Layanan Pengaduan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Stepper / Tabs -->
+    <nav class="stepper" aria-label="Navigasi bagian">
+        <a href="#visi-misi" class="step is-active">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Visi dan Misi</span>
+        </a>
+        <span class="chev" aria-hidden="true">➜</span>
+        <a href="#tugas-fungsi" class="step">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Tugas dan Fungsi</span>
+        </a>
+    </nav>
+
+    <main class="page">
+        <!-- ===== Section: Visi & Misi ===== -->
+        <section id="visi-misi" class="section">
+            <h2 class="section-badge">Visi dan Misi</h2>
+
+            <div class="card two-col">
+                <!-- V I S I -->
+                <div class="subcard">
+                    <header class="subcard-head">
+                        <h3>VISI</h3>
+                    </header>
+                    <div class="subcard-body">
+                        <p><strong>Visi Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang</strong> adalah:</p>
+                        <ul class="dash">
+                            <li>Mewujudkan Keadilan, Ketenagakerjaan, dan Transmigrasi yang Sejahtera.</li>
+                            <li>Tumbuhnya kesempatan kerja yang merata.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- M I S I -->
+                <div class="subcard">
+                    <header class="subcard-head">
+                        <h3>MISI</h3>
+                    </header>
+                    <div class="subcard-body">
+                        <ol class="num">
+                            <li>Meningkatkan kualitas SDM ketenagakerjaan.</li>
+                            <li>Meningkatkan kualitas tenaga kerja melalui pelatihan dan sertifikasi.</li>
+                            <li>Mendorong perluasan kesempatan kerja.</li>
+                            <li>Mewujudkan hubungan industrial yang harmonis.</li>
+                            <li>Memperkuat pengawasan ketenagakerjaan.</li>
+                            <li>Meningkatkan layanan penempatan kerja.</li>
+                            <li>Mendorong kolaborasi dunia usaha & industri.</li>
+                            <li>Memfasilitasi transmigrasi yang layak dan berkelanjutan.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Section: Tugas & Fungsi ===== -->
+        <section id="tugas-fungsi" class="section">
+            <h2 class="section-badge">Tugas dan Fungsi</h2>
+
+            <div class="card">
+                <div class="notice">
+                    Berdasarkan Peraturan Daerah Kabupaten Serang Nomor 19 Tahun 2011 tentang Pembentukan
+                    Organisasi Dinas Kabupaten Serang, Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang
+                    mempunyai tugas dan fungsi sebagai berikut:
+                </div>
+
+                <!-- Tugas -->
+                <div class="subcard vstack">
+                    <header class="subcard-head">
+                        <h3>a. Tugas</h3>
+                    </header>
+                    <div class="subcard-body">
+                        <p>Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang mempunyai tugas pokok merencanakan
+                            dan melaksanakan urusan pemerintahan daerah di bidang ketenagakerjaan dan transmigrasi
+                            sesuai peraturan perundang-undangan.</p>
+                    </div>
+                </div>
+
+                <!-- Fungsi -->
+                <div class="subcard vstack">
+                    <header class="subcard-head">
+                        <h3>b. Fungsi</h3>
+                    </header>
+                    <div class="subcard-body">
+                        <ul class="dash">
+                            <li>Perumusan kebijakan teknis penempatan tenaga kerja dan perlindungan tenaga kerja.</li>
+                            <li>Penyelenggaraan pelayanan bidang ketenagakerjaan & transmigrasi.</li>
+                            <li>Pembinaan, pengawasan, dan pengendalian hubungan industrial.</li>
+                            <li>Pelaksanaan administrasi dinas.</li>
+                            <li>Pelaporan dan evaluasi program kerja.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="/profil/profile.js" defer></script>
+</body>
+
+</html>
