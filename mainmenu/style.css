@@ -634,6 +634,21 @@ body.scrolled .site-header {
     width: 100%;
     max-width: 280px;
     /* batas lebar tiap kartu */
+    /* ==== posisi awal animasi ==== */
+    transition:
+        box-shadow .3s ease,
+        transform .3s ease,
+        opacity .7s ease;
+    opacity: 0;
+    transform: translateX(-40px);
+    will-change: transform, opacity;
+}
+
+.service-card.show {
+    opacity: 1;
+    transform: translateX(0);
+    /* delay diterapkan di sini */
+    transition-delay: var(--delay, 0ms);
 }
 
 .service-link {
@@ -807,18 +822,19 @@ body.scrolled .site-header {
 
 /* ===== Footer / Layanan Pengaduan (pas di garis) ===== */
 .lp {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 footer.lp {
-  margin-top: 80px !important;
-  padding-top: 0 !important;
+    margin-top: 80px !important;
+    padding-top: 0 !important;
 }
 
 .lp-bottom {
-  margin-top: 0 !important;
-  padding-top: 60px !important;
+    margin-top: 0 !important;
+    padding-top: 60px !important;
 }
+
 .lp-bottom {
     position: relative;
     background: #7EC8E3;
@@ -847,15 +863,15 @@ footer.lp {
 }
 
 .lp-card {
-  width: min(980px, calc(100% - 40px));
-  margin: 0 auto;
-  background: #ffffff;
-  box-shadow: 0 10px 24px rgba(2, 8, 20, .10);
-  padding: 20px 24px 18px;
-  position: relative;
-  top: -18px;
-  z-index: 2;
-  border-radius: 24px;
+    width: min(980px, calc(100% - 40px));
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(2, 8, 20, .10);
+    padding: 20px 24px 18px;
+    position: relative;
+    top: -18px;
+    z-index: 2;
+    border-radius: 24px;
 }
 
 .wrapper,
@@ -953,17 +969,17 @@ section {
 }
 
 .lp-copy {
-  margin: 0 !important;
-  padding: 10px 0 !important;
-  border-radius: 0 !important;
-  background: #007ac1;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  position: relative;
-  bottom: 0;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    border-radius: 0 !important;
+    background: #007ac1;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    position: relative;
+    bottom: 0;
 }
 
 /* Responsif */
