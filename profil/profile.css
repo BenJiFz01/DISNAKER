@@ -1,0 +1,372 @@
+/* ========== Design Tokens ========== */
+:root {
+    --primary: #0ea5e9;
+    /* biru muda */
+    --primary-600: #0284c7;
+    /* biru tua */
+    --text: #0f172a;
+    --ink: #0f172a;
+    --muted: #5b6675;
+    --bg: #f6f8fb;
+    /* latar halaman */
+    --paper: #ffffff;
+    /* kartu putih */
+    --surface: #f8fafc;
+    --line: #e2e8f0;
+    --brand: #2563eb;
+    --radius: 16px;
+    --shadow: 0 12px 30px rgba(2, 8, 20, .08);
+    --maxw: 1200px;
+    --gutter: 20px;
+    /* padding horizontal container */
+    --brand: #19a7ff;
+    /* biru utama */
+    --brand-600: #0b8ad6;
+    --ink: #132039;
+    --muted: #55657d;
+    --paper: #ffffff;
+    --bg: #f6f9ff;
+    --line: rgba(2, 16, 43, .12);
+    --radius: 16px;
+    --shadow: 0 10px 26px rgba(2, 16, 43, .08);
+    --maxw: 1080px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
+
+/* ========== Reset & Base ========== */
+* {
+    box-sizing: border-box
+}
+
+#page,
+.page,
+.container,
+.wrapper {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    height: 100%;
+}
+
+/* Font heading (judul besar dan subjudul) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.btn,
+.nav-link,
+.np-tab,
+.np-title,
+.np-excerpt,
+.np-detail,
+.np-pill {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto
+}
+
+/* Utility */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Container global */
+.container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+/* ========== Header / Navbar ========== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    /* semi transparan default */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .06);
+    backdrop-filter: blur(5px);
+    /* efek blur kaca */
+    transition: all .4s ease;
+}
+
+body.scrolled .site-header {
+    background: rgba(255, 255, 255, 0.65);
+    /* ubah transparansi */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .15);
+    backdrop-filter: blur(12px);
+    /* blur lebih kuat */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-inline: 24px;
+    margin: 0 auto;
+    max-width: 1400px;
+    min-height: 68px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    margin-left: 0;
+}
+
+.brand-logo {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+/* teks di samping logo (kalau ada) */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.brand-text small {
+    font-weight: 400;
+    color: #475569;
+}
+
+/* tombol toggle (mobile) */
+.nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 6px auto;
+    background: #0f172a;
+    border-radius: 2px;
+}
+
+/* daftar menu */
+.nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* rapat ke kanan */
+    gap: 24px;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #0f172a;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 20px;
+    transition: background .25s ease, color .25s ease;
+}
+
+.nav-link:hover {
+    background: linear-gradient(90deg, rgba(14, 164, 233, .18), rgba(2, 133, 199, .18));
+}
+
+/* link aktif */
+.nav-link.active {
+    background: linear-gradient(90deg, #0ea5e9, #0284c7);
+    color: #fff;
+}
+
+/* ========== Responsif ========== */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: inline-block;
+        margin-left: auto;
+    }
+
+    .nav-list {
+        position: absolute;
+        right: 16px;
+        top: 64px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 10px;
+        width: min(260px, 88vw);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
+        display: none;
+    }
+
+    .nav-list.is-open {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 14px;
+    }
+}
+
+/* ===== Stepper / Tabs ===== */
+.stepper{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 20px;
+  max-width:var(--maxw);
+  margin:18px auto 6px;
+}
+.stepper .step{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:600;
+  padding:6px 10px;
+  border-radius:999px;
+  transition:.2s ease;
+}
+.stepper .step:hover{background:#e8f4ff}
+.stepper .step.is-active{color:var(--ink)}
+.stepper .dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--brand);
+  box-shadow:0 0 0 3px rgba(25,167,255,.18);
+}
+.stepper .chev{opacity:.6}
+
+/* ===== Page & Section ===== */
+.page{max-width:var(--maxw);margin:0 auto;padding:0 20px 60px}
+.section{margin-top:14px}
+.section-badge{
+  width:max-content;
+  background:var(--brand);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:14px;
+  font-size:18px;
+  letter-spacing:.2px;
+  margin:0 0 16px;
+  box-shadow:0 6px 18px rgba(25,167,255,.35);
+}
+
+/* ===== Cards ===== */
+.card{
+  background:var(--paper);
+  border:2px solid #bfe7ff;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.two-col{
+  display:grid;
+  grid-template-columns: 1fr 1.75fr; /* VISI lebih kecil, MISI lebih lebar */
+  gap:16px;
+}
+
+/* sub cards (di dalam card) */
+.subcard{
+  background:#fff;
+  border:2px solid #cfeaff;
+  border-radius:14px;
+  overflow:hidden;
+}
+.subcard.vstack{margin-top:14px}
+
+.subcard-head{
+  background:#ecf6ff;
+  border-bottom:2px solid #cfeaff;
+  padding:10px 14px;
+}
+.subcard-head h3{
+  margin:0;
+  font-size:15px;
+  letter-spacing:.3px;
+  color:#135d9a;
+  font-weight:800;
+}
+.subcard-body{padding:14px 16px}
+
+/* Lists */
+ul.dash{padding-left:18px;margin:8px 0}
+ul.dash li{margin:6px 0}
+ul.dash li::marker{content:"– ";color:#0b8ad6;font-weight:700}
+
+ol.num{padding-left:20px;margin:8px 0}
+ol.num li{margin:6px 0}
+
+/* Notice box */
+.notice{
+  background:#f3f9ff;
+  border:2px dashed #bfe7ff;
+  color:#123a60;
+  padding:12px 14px;
+  border-radius:12px;
+  margin-bottom:10px;
+  font-size:15px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  .two-col{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .section-badge{font-size:16px;padding:8px 14px}
+  .stepper{gap:10px}
+  .stepper .label{font-size:14px}
+}
