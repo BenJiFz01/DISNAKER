@@ -19,6 +19,7 @@
     --maxw: 1200px;
     --gutter: 20px;
     /* padding horizontal container */
+    --header-h: 72px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
@@ -176,16 +177,15 @@ img {
 }
 
 /* ========== Header / Navbar ========== */
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.96);
-    /* semi transparan default */
-    box-shadow: 0 10px 10px rgba(0, 0, 0, .06);
-    backdrop-filter: blur(5px);
-    /* efek blur kaca */
-    transition: all .4s ease;
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 9999;            /* penting */
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 10px 10px rgba(0,0,0,.06);
+  backdrop-filter: blur(5px);
+  transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+  isolation: isolate;
 }
 
 body.scrolled .site-header {
@@ -1026,4 +1026,34 @@ section {
   .lp-logos img {
     height: 50px;
   }
+}
+
+/* ==== Perbaikan sticky header hilang di bawah ==== */
+html {
+  height: auto !important;        /* jangan kunci ke 100% */
+}
+body {
+  height: auto !important;
+  min-height: 100%;               /* biar tetap setinggi viewport minimal */
+  overflow-x: hidden;             /* cegah scroll horizontal tanpa ganggu sticky */
+}
+
+/* Pastikan header benar-benar di atas semuanya */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Kalau header dibungkus wrapper khusus, pastikan tidak ‘mengurung’ sticky */
+:where(#page, .page, .wrapper, .container){
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Jika ada elemen induk (mis. main/layout) yang diberi transform, netralkan di breakpoint utama */
+:where(main, .layout, .app){
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
 }
