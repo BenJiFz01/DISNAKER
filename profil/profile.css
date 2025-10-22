@@ -540,7 +540,7 @@ ol.num li {
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/3;
     background: #eef2f7;
     box-shadow: inset 0 0 0 1px rgba(2, 8, 20, .06);
 }
