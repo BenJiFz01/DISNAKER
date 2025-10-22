@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   newsItems.forEach(item => observer.observe(item));
 });
 
-// === Animasi Scroll: Berita Muncul dari Kiri (1 per 1 & terus aktif) ===
+// === Animasi Scroll: layanan Muncul dari Kiri (1 per 1 & terus aktif) ===
 document.addEventListener('DOMContentLoaded', () => {
   const newsItems = document.querySelectorAll('.service-card');
   if (!newsItems.length) return;
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
           el.classList.remove('show');
 
           // beri sedikit jeda (biar smooth satu-satu)
-          const delay = [...newsItems].indexOf(el) * 190; // jeda antar item 150ms
+          const delay = [...newsItems].indexOf(el) * 170; // jeda antar item 150ms
           setTimeout(() => {
             el.classList.add('show');
           }, delay);
