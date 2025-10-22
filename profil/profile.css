@@ -30,7 +30,18 @@
     --radius: 16px;
     --shadow: 0 10px 26px rgba(2, 16, 43, .08);
     --maxw: 1080px;
+    --brand: #0ea5e9;
+    /* biru muda */
+    --brand-dark: #0284c7;
+    --paper: #ffffff;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --radius: 16px;
+    --shadow: 0 4px 14px rgba(2, 8, 20, 0.08);
 }
+
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
 
@@ -262,111 +273,314 @@ body.scrolled .site-header {
 }
 
 /* ===== Stepper / Tabs ===== */
-.stepper{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px 20px;
-  max-width:var(--maxw);
-  margin:18px auto 6px;
+.stepper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    max-width: var(--maxw);
+    margin: 18px auto 6px;
 }
-.stepper .step{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:600;
-  padding:6px 10px;
-  border-radius:999px;
-  transition:.2s ease;
+
+.stepper .step {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: .2s ease;
 }
-.stepper .step:hover{background:#e8f4ff}
-.stepper .step.is-active{color:var(--ink)}
-.stepper .dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--brand);
-  box-shadow:0 0 0 3px rgba(25,167,255,.18);
+
+.stepper .step:hover {
+    background: #e8f4ff
 }
-.stepper .chev{opacity:.6}
+
+.stepper .step.is-active {
+    color: var(--ink)
+}
+
+.stepper .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 3px rgba(25, 167, 255, .18);
+}
+
+.stepper .chev {
+    opacity: .6
+}
 
 /* ===== Page & Section ===== */
-.page{max-width:var(--maxw);margin:0 auto;padding:0 20px 60px}
-.section{margin-top:14px}
-.section-badge{
-  width:max-content;
-  background:var(--brand);
-  color:#fff;
-  padding:10px 18px;
-  border-radius:14px;
-  font-size:18px;
-  letter-spacing:.2px;
-  margin:0 0 16px;
-  box-shadow:0 6px 18px rgba(25,167,255,.35);
+.page {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 20px 60px
+}
+
+.section {
+    margin-top: 35px
+}
+
+.section-badge {
+    width: max-content;
+    background: var(--brand);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-size: 18px;
+    letter-spacing: .2px;
+    margin: 0 0 16px;
+    box-shadow: 0 6px 18px rgba(25, 167, 255, .35);
 }
 
 /* ===== Cards ===== */
-.card{
-  background:var(--paper);
-  border:2px solid #bfe7ff;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:16px;
+.card {
+    background: var(--paper);
+    border: 2px solid #bfe7ff;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 16px;
 }
-.two-col{
-  display:grid;
-  grid-template-columns: 1fr 1.75fr; /* VISI lebih kecil, MISI lebih lebar */
-  gap:16px;
+
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.75fr;
+    /* VISI lebih kecil, MISI lebih lebar */
+    gap: 16px;
 }
 
 /* sub cards (di dalam card) */
-.subcard{
-  background:#fff;
-  border:2px solid #cfeaff;
-  border-radius:14px;
-  overflow:hidden;
+.subcard {
+    background: #fff;
+    border: 2px solid #cfeaff;
+    border-radius: 14px;
+    overflow: hidden;
 }
-.subcard.vstack{margin-top:14px}
 
-.subcard-head{
-  background:#ecf6ff;
-  border-bottom:2px solid #cfeaff;
-  padding:10px 14px;
+.subcard.vstack {
+    margin-top: 14px
 }
-.subcard-head h3{
-  margin:0;
-  font-size:15px;
-  letter-spacing:.3px;
-  color:#135d9a;
-  font-weight:800;
+
+.subcard-head {
+    background: #ecf6ff;
+    border-bottom: 2px solid #cfeaff;
+    padding: 10px 14px;
 }
-.subcard-body{padding:14px 16px}
+
+.subcard-head h3 {
+    margin: 0;
+    font-size: 15px;
+    letter-spacing: .3px;
+    color: #135d9a;
+    font-weight: 800;
+}
+
+.subcard-body {
+    padding: 14px 16px
+}
 
 /* Lists */
-ul.dash{padding-left:18px;margin:8px 0}
-ul.dash li{margin:6px 0}
-ul.dash li::marker{content:"– ";color:#0b8ad6;font-weight:700}
+ul.dash {
+    padding-left: 18px;
+    margin: 8px 0
+}
 
-ol.num{padding-left:20px;margin:8px 0}
-ol.num li{margin:6px 0}
+ul.dash li {
+    margin: 6px 0
+}
+
+ul.dash li::marker {
+    content: "– ";
+    color: #0b8ad6;
+    font-weight: 700
+}
+
+ol.num {
+    padding-left: 20px;
+    margin: 8px 0
+}
+
+ol.num li {
+    margin: 6px 0
+}
 
 /* Notice box */
-.notice{
-  background:#f3f9ff;
-  border:2px dashed #bfe7ff;
-  color:#123a60;
-  padding:12px 14px;
-  border-radius:12px;
-  margin-bottom:10px;
-  font-size:15px;
+.notice {
+    background: #f3f9ff;
+    border: 2px dashed #bfe7ff;
+    color: #000000;
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 900px){
-  .two-col{grid-template-columns:1fr}
+@media (max-width: 900px) {
+    .two-col {
+        grid-template-columns: 1fr
+    }
 }
-@media (max-width:520px){
-  .section-badge{font-size:16px;padding:8px 14px}
-  .stepper{gap:10px}
-  .stepper .label{font-size:14px}
+
+@media (max-width:520px) {
+    .section-badge {
+        font-size: 16px;
+        padding: 8px 14px
+    }
+
+    .stepper {
+        gap: 10px
+    }
+
+    .stepper .label {
+        font-size: 14px
+    }
+}
+
+.pill {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: .4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-600));
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+}
+/* ===== BIDANG Section ===== */
+.bidang-section {
+    margin-top: 35px;
+    padding-top: 10px;
+}
+
+.bidang-head {
+    margin-bottom: 24px;
+}
+
+/* Grid fix: 5 kolom tetap */
+.bidang-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* <=== 5 card sejajar */
+    gap: 28px;
+    padding: 0;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: start;
+    max-width: 1400px;
+    /* biar nggak terlalu lebar di layar besar */
+}
+
+/* === Efek blur untuk card lain ketika hover === */
+
+/* Saat salah satu card di-hover */
+.bidang-grid:hover .bidang {
+    filter: blur(3px);
+    opacity: 0.6;
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+}
+
+/* Hanya card yang di-hover tetap tajam */
+.bidang-grid:hover .bidang:hover {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* Card */
+.bidang-card {
+    width: 100%;
+    max-width: 240px;
+    /* bisa disesuaikan 220–260px */
+    transition: box-shadow .3s ease, transform .3s ease, opacity .7s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+.bidang-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: var(--delay, 0ms);
+}
+
+/* Link (card box) */
+.bidang {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    background:
+        linear-gradient(#ffffffdd, #fffffffa) padding-box,
+        linear-gradient(135deg, rgba(14, 165, 233, .45), rgba(2, 132, 199, .35)) border-box;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    padding: 16px 14px;
+    box-shadow: 0 8px 20px rgba(2, 8, 20, .08);
+    transition: all .3s ease;
+}
+
+.bidang:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 26px rgba(2, 8, 20, .15);
+}
+
+/* Gambar */
+.bidang .thumb {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3/3;
+    background: #eef2f7;
+    box-shadow: inset 0 0 0 1px rgba(2, 8, 20, .06);
+}
+
+.bidang .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.bidang:hover .thumb img {
+    transform: scale(1.06);
+}
+
+/* Judul */
+.bidang .title {
+    margin-top: 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #0f172a;
+    text-transform: uppercase;
+}
+
+/* Responsif (opsional) */
+@media (max-width: 1200px) {
+    .bidang-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .bidang-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .bidang-grid {
+        grid-template-columns: 1fr;
+    }
 }
