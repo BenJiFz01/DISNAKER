@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
           el.classList.remove('show');
 
           // beri sedikit jeda (biar smooth satu-satu)
-          const delay = [...newsItems].indexOf(el) * 120; // jeda antar item 150ms
+          const delay = [...newsItems].indexOf(el) * 115; // jeda antar item 150ms
           setTimeout(() => {
             el.classList.add('show');
           }, delay);
