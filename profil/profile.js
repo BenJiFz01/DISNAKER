@@ -106,4 +106,114 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('scrolled');
     }
   });
+
+  (function () {
+    const section = document.querySelector('#bidang');
+    const grid = section?.querySelector('.bidang-grid');
+    const flyout = section?.querySelector('#bidangFlyout');
+    if (!section || !grid || !flyout) return;
+
+    const titleEl = flyout.querySelector('.flyout-title');
+    const descEl = flyout.querySelector('.flyout-desc');
+
+    // reset semua kartu ke posisi normal
+    function resetTransforms() {
+      grid.querySelectorAll('.bidang-wrapper').forEach(w => w.style.transform = '');
+    }
+
+
+    function positionFlyout(cardEl) {
+      const secRect = section.getBoundingClientRect();
+      const cardRect = cardEl.getBoundingClientRect();
+
+      const gap = 14;                                      // jarak kartu <-> flyout
+      const panelW = Math.min(420, Math.max(320, section.clientWidth * 0.28));
+      const leftInSec = cardRect.left - secRect.left;
+      const rightInSec = leftInSec + cardRect.width;
+      const spaceRight = section.clientWidth - rightInSec; // ruang ke tepi kanan section
+      const spaceLeft = leftInSec;
+
+      // default: taruh flyout di kanan kartu
+      let place = 'right';
+      let shift = 0;
+
+      // jika ruang kanan kurang, geser kartu ke kiri secukupnya
+      const deficit = (panelW + gap) - spaceRight;
+      if (deficit > 0) {
+        // geser kartu ke kiri, tapi jangan melebihi ruang kiri yang tersedia
+        const maxShift = Math.max(0, spaceLeft - gap);
+        shift = Math.min(deficit, maxShift);
+        if (shift > 0) {
+          cardEl.closest('.bidang-wrapper').style.transform = `translateX(${-shift}px)`;
+        } else {
+          // kalau tetap tidak cukup (mis. kartu paling pojok), baru taruh flyout di kiri
+          place = 'left';
+        }
+      } else {
+        // cukup ruang kanan, pastikan transform reset
+        cardEl.style.transform = '';
+      }
+
+      // set posisi panel
+      flyout.style.position = 'absolute';
+      const x = place === 'right'
+        ? (rightInSec - shift + gap)
+        : (leftInSec - panelW - gap);
+      const y = Math.max(0, cardRect.top - secRect.top);
+
+      flyout.style.left = `${x}px`;
+      flyout.style.top = `${y}px`;
+    }
+
+    function showFor(el) {
+      titleEl.textContent = el.dataset.title || el.getAttribute('aria-label') || '';
+      descEl.textContent = el.dataset.desc || '';
+
+      grid.querySelectorAll('.bidang').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+
+      flyout.classList.add('show');
+      grid.classList.add('is-active');   // <— tambahkan ini
+
+      resetTransforms();
+      positionFlyout(el);
+    }
+
+    function hide() {
+      flyout.classList.remove('show');
+      grid.classList.remove('is-active'); // <— dan ini
+
+      grid.querySelectorAll('.bidang').forEach(b => b.classList.remove('active'));
+      resetTransforms();
+    }
+
+
+    grid.querySelectorAll('.bidang').forEach((el) => {
+      el.addEventListener('mouseenter', () => showFor(el));
+      el.addEventListener('focus', () => showFor(el));
+    });
+
+    grid.addEventListener('mouseleave', (e) => {
+      if (!flyout.contains(e.relatedTarget)) hide();
+    });
+    flyout.addEventListener('mouseleave', (e) => {
+      if (!grid.contains(e.relatedTarget)) hide();
+    });
+
+    // Reposisi saat resize/scroll
+    ['resize', 'scroll'].forEach(ev => {
+      window.addEventListener(ev, () => {
+        const active = grid.querySelector('.bidang.active');
+        if (!active || !flyout.classList.contains('show')) return;
+
+        // di layar sempit (<900px) flyout jadi static (CSS), jadi reset transform
+        if (window.innerWidth <= 900) {
+          flyout.style.position = 'static';
+          resetTransforms();
+          return;
+        }
+        positionFlyout(active);
+      });
+    });
+  })();
 });

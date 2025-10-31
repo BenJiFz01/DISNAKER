@@ -640,113 +640,89 @@ ol.num li {
 }
 
 /* ===== BIDANG Section ===== */
-.bidang-section {
-    margin-top: 35px;
-    padding-top: 10px;
+.bidang-section { margin-top: 35px; padding-top: 10px; position: relative; }
+.bidang-head { margin-bottom: 24px; }
+
+/* Grid: 4 kolom, center */
+.bidang-grid{
+  list-style: none; display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 28px; padding: 0; margin: 0 auto;
+  justify-items: center; align-items: start; max-width: 1200px;
 }
 
-.bidang-head {
-    margin-bottom: 24px;
-}
-
-/* Grid: otomatis menyesuaikan 4 card */
-.bidang-grid {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* dari 5 jadi 4 */
-    gap: 28px;
-    padding: 0;
-    margin: 0 auto;
-    justify-items: center;
-    align-items: start;
-    max-width: 1200px;
-}
-
-/* Hover blur effect */
-.bidang-grid:hover .bidang {
-    filter: blur(3px);
-    opacity: 0.6;
-    transform: scale(0.98);
-    transition: all 0.3s ease;
-}
-
-.bidang-grid:hover .bidang:hover {
-    filter: none;
-    opacity: 1;
-    transform: scale(1.05);
-    z-index: 2;
-}
+/* Card wrapper -> ini yang akan digeser via JS */
+.bidang-wrapper{ transition: transform .2s ease; will-change: transform; }
 
 /* Card */
-.bidang-card {
-    width: 100%;
-    max-width: 240px;
-    transition: box-shadow .3s ease, transform .3s ease, opacity .7s ease;
-    opacity: 0;
-    transform: translateY(30px);
-    will-change: transform, opacity;
-}
-
-.bidang-card.show {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: var(--delay, 0ms);
-}
+.bidang-card{ width:100%; max-width:240px; opacity:0; transform:translateY(30px);
+  transition: box-shadow .3s ease, transform .3s ease, opacity .7s ease; will-change: transform, opacity; }
+.bidang-card.show{ opacity:1; transform:translateY(0); transition-delay: var(--delay,0ms); }
 
 /* Link (card box) */
-.bidang {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-    background:
-        linear-gradient(#ffffffdd, #fffffffa) padding-box,
-        linear-gradient(135deg, rgba(14, 165, 233, .45), rgba(2, 132, 199, .35)) border-box;
-    border: 1px solid transparent;
-    border-radius: 16px;
-    padding: 16px 14px;
-    box-shadow: 0 8px 20px rgba(2, 8, 20, .08);
-    transition: all .3s ease;
+.bidang{
+  position: relative; display:flex; flex-direction:column; align-items:center; gap:10px;
+  text-decoration:none; color:inherit;
+  background: linear-gradient(#ffffffdd,#fffffffa) padding-box,
+             linear-gradient(135deg, rgba(14,165,233,.45), rgba(2,132,199,.35)) border-box;
+  border:1px solid transparent; border-radius:16px; padding:16px 14px;
+  box-shadow:0 8px 20px rgba(2,8,20,.08); transition:all .3s ease;
 }
-
-.bidang:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 26px rgba(2, 8, 20, .15);
-}
+.bidang:hover{ transform:translateY(-6px); box-shadow:0 14px 26px rgba(2,8,20,.15); }
 
 /* Gambar */
-.bidang .thumb {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    aspect-ratio: 3/3;
-    background: #eef2f7;
-    box-shadow: inset 0 0 0 1px rgba(2, 8, 20, .06);
-}
-
-.bidang .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .5s ease;
-}
-
-.bidang:hover .thumb img {
-    transform: scale(1.06);
-}
+.bidang .thumb{ width:100%; border-radius:12px; overflow:hidden; aspect-ratio:3/3;
+  background:#eef2f7; box-shadow: inset 0 0 0 1px rgba(2,8,20,.06); position:relative; }
+.bidang .thumb img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.bidang:hover .thumb img{ transform:scale(1.06); }
 
 /* Judul */
-.bidang .title {
-    margin-top: 8px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 15px;
-    color: #0f172a;
-    text-transform: uppercase;
+.bidang .title{ margin-top:8px; text-align:center; font-weight:700; font-size:15px; color:#0f172a; text-transform:uppercase; }
+
+/* ========== BLUR: gunakan hover (fallback) + class .is-active (saat flyout tampil) ========== */
+.bidang-grid:hover .bidang,
+.bidang-grid.is-active .bidang{
+  filter: blur(3px); opacity:.6; transform: scale(.98);
+}
+.bidang-grid:hover .bidang.active,
+.bidang-grid.is-active .bidang.active{
+  filter:none; opacity:1; transform: scale(1.03); z-index:3;
+}
+
+/* ========== Flyout panel di samping ========== */
+.bidang-flyout{
+  position:absolute; /* left/top di-set via JS */
+  max-width:420px; width:clamp(320px,28vw,420px);
+  background: linear-gradient(#fff,#fff) padding-box,
+              linear-gradient(135deg, rgba(14,165,233,.35), rgba(2,132,199,.25)) border-box;
+  border:1px solid transparent; border-radius:16px;
+  box-shadow:0 16px 36px rgba(2,8,20,.14);
+  padding:16px 18px; color:#0f172a;
+  opacity:0; transform:translateY(8px);
+  pointer-events:none; transition:opacity .18s ease, transform .18s ease; z-index:5;
+}
+.bidang-flyout.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+.flyout-title{ margin:0 0 6px; font-weight:800; font-size:16px; letter-spacing:.2px; }
+.flyout-desc{ margin:0; font-size:14px; line-height:1.5; color:#334155; }
+
+/* Responsif: pada layar kecil biar flyout di bawah */
+@media (max-width: 900px){
+  .bidang-flyout{ position:static; width:100%; max-width:none; margin-top:10px; transform:none; }
+  .bidang-flyout.show{ transform:none; }
+  .bidang-grid{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 700px){ .bidang-grid{ grid-template-columns: 1fr; } }
+
+/* Responsif: pada layar sempit, jadikan panel di bawah grid (full width) */
+@media (max-width: 900px) {
+  .bidang-flyout {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 10px;
+    transform: none;
+  }
 }
 
 /* Responsif */
