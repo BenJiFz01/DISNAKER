@@ -177,15 +177,16 @@ img {
 }
 
 /* ========== Header / Navbar ========== */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 9999;            /* penting */
-  background: rgba(255,255,255,.96);
-  box-shadow: 0 10px 10px rgba(0,0,0,.06);
-  backdrop-filter: blur(5px);
-  transition: background .3s, box-shadow .3s, backdrop-filter .3s;
-  isolation: isolate;
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    /* penting */
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .06);
+    backdrop-filter: blur(5px);
+    transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+    isolation: isolate;
 }
 
 body.scrolled .site-header {
@@ -961,18 +962,18 @@ section {
 }
 
 .lp-copy {
-    margin: 0 !important;
-    padding: 10px 0 !important;
-    border-radius: 0 !important;
-    background: #007ac1;
-    color: #fff;
+    background: linear-gradient(180deg, #1d4ed8 0%, #2563eb 100%);
+    /* biru Disnakertrans */
     text-align: center;
-    font-size: 14px;
+    padding: 6px 0;
+    margin-top: 40px;
+    border-top: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.05);
+    color: #f9fafb;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.3px;
-    position: relative;
-    bottom: 0;
-    top: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsif */
@@ -993,67 +994,74 @@ section {
         justify-content: center;
     }
 }
+
 /* ===== Gambar Logo di Pojok Kiri Atas ===== */
 .lp-logos {
-  position: absolute;
-  top: 10px;
-  left: 40px;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  z-index: 3;
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 3;
 }
 
 .lp-logos img {
-  display: block;
-  height: 40px;
-  width: auto;
-  object-fit: contain;
+    display: block;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 
 .lp-logos .logo-berakhlak {
-  height: 65px; /* sedikit lebih besar */
-  top: 0px;
-  left: 20px;
+    height: 65px;
+    /* sedikit lebih besar */
+    top: 0px;
+    left: 20px;
 }
 
 @media (max-width: 768px) {
-  .lp-logos {
-    top: 18px;
-    left: 16px;
-    gap: 12px;
-  }
-  .lp-logos img {
-    height: 50px;
-  }
+    .lp-logos {
+        top: 18px;
+        left: 16px;
+        gap: 12px;
+    }
+
+    .lp-logos img {
+        height: 50px;
+    }
 }
 
 /* ==== Perbaikan sticky header hilang di bawah ==== */
 html {
-  height: auto !important;        /* jangan kunci ke 100% */
+    height: auto !important;
+    /* jangan kunci ke 100% */
 }
+
 body {
-  height: auto !important;
-  min-height: 100%;               /* biar tetap setinggi viewport minimal */
-  overflow-x: hidden;             /* cegah scroll horizontal tanpa ganggu sticky */
+    height: auto !important;
+    min-height: 100%;
+    /* biar tetap setinggi viewport minimal */
+    overflow-x: hidden;
+    /* cegah scroll horizontal tanpa ganggu sticky */
 }
 
 /* Pastikan header benar-benar di atas semuanya */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 9999;
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 
 /* Kalau header dibungkus wrapper khusus, pastikan tidak ‘mengurung’ sticky */
-:where(#page, .page, .wrapper, .container){
-  height: auto !important;
-  overflow: visible !important;
+:where(#page, .page, .wrapper, .container) {
+    height: auto !important;
+    overflow: visible !important;
 }
 
 /* Jika ada elemen induk (mis. main/layout) yang diberi transform, netralkan di breakpoint utama */
-:where(main, .layout, .app){
-  transform: none !important;
-  filter: none !important;
-  perspective: none !important;
+:where(main, .layout, .app) {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
 }
