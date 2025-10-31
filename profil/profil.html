@@ -42,12 +42,17 @@
     <nav class="stepper" aria-label="Navigasi bagian">
         <a href="#visi-misi" class="step is-active">
             <span class="dot" aria-hidden="true"></span>
-            <span class="label">Visi dan Misi</span>
+            <span class="label">Struktur Tata Kerja</span>
         </a>
         <span class="chev" aria-hidden="true">➜</span>
         <a href="#tugas-fungsi" class="step">
             <span class="dot" aria-hidden="true"></span>
-            <span class="label">Tugas dan Fungsi</span>
+            <span class="label">Visi dan Misi</span>
+        </a>
+        <span class="chev" aria-hidden="true">➜</span>
+        <a href="#bidang" class="step">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="label">Bugas dan Fungsi</span>
         </a>
         <span class="chev" aria-hidden="true">➜</span>
         <a href="#bidang" class="step">
@@ -55,6 +60,40 @@
             <span class="label">Bidang Disnakertrans</span>
         </a>
     </nav>
+
+    <!-- ===== STRUKTUR ORGANISASI ===== -->
+    <section id="struktur-organisasi" class="section container">
+        <div class="section-head">
+            <h2 class="section-title">Struktur Organisasi</h2>
+        </div>
+
+        <figure class="org-figure fade-in" aria-labelledby="orgCaption">
+            <div class="org-frame">
+                <img src="/img/organisasi.png"
+                    alt="Struktur Organisasi Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang" class="org-img"
+                    loading="lazy" decoding="async" />
+                <button class="zoom-btn" type="button" aria-label="Perbesar gambar" title="Perbesar">
+                    &#128269;
+                </button>
+            </div>
+            <figcaption id="orgCaption" class="org-caption">
+                Struktur Organisasi dan Tata Kerja Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang
+            </figcaption>
+        </figure>
+    </section>
+
+    <!-- Modal zoom (lightbox) -->
+    <div id="orgLightbox" class="org-lightbox" aria-hidden="true" role="dialog"
+        aria-label="Perbesar Struktur Organisasi">
+        <div class="lightbox-card" role="document">
+            <button class="lightbox-close" aria-label="Tutup">✕</button>
+            <img src="/img/organisasi.png" alt="" class="lightbox-img" />
+            <div class="lightbox-caption">
+                Struktur Organisasi Dinas Tenaga Kerja dan Transmigrasi Kabupaten Serang
+            </div>
+        </div>
+    </div>
+
 
     <main class="page">
         <!-- ===== Section: Visi & Misi ===== -->
@@ -185,21 +224,12 @@
                     <strong class="title">LATTAS</strong>
                 </a>
             </li>
-
-            <li class="bidang-card">
-                <a class="bidang" href="#" aria-label="TRANSMIGRASI">
-                    <div class="thumb">
-                        <img src="/img/transmigrasi.png" alt="TRANSMIGRASI" width="160" height="100" loading="lazy"
-                            decoding="async" />
-                    </div>
-                    <strong class="title">TRANSMIGRASI</strong>
-                </a>
-            </li>
         </ul>
     </section>
 
+
     <footer class="lp">
-            <div class="lp-copy">© 2025 Disnakertrans Kabupaten Serang</div>
+        <div class="lp-copy">© 2025 Disnakertrans Kabupaten Serang</div>
     </footer>
     <script src="/profil/profile.js" defer></script>
 </body>
