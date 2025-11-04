@@ -14,45 +14,41 @@
 </head>
 
 <body>
-    <!-- ===== Banner / Hero ===== -->
-    <section class="banner-section" aria-label="Gambar latar">
-        <div class="banner-bg" id="heroSlider" aria-live="polite">
-            <img class="slide is-active" src="/img/intiimage.jpg" alt="Latar Disnakertrans Kabupaten Serang"
-                width="1600" height="500" />
-            <img class="slide" src="/img/inti2.jpg" alt="Suasana pelayanan Disnakertrans Kabupaten Serang" width="1600"
-                height="500" />
-            <img class="slide" src="/img/bannernav.jpg" alt="Suasana Disnakertrans Kabupaten Serang" width="1600"
-                height="500" />
+    <!-- ===== NAVBAR DAN VIDEO ===== -->
+    <section class="hero-video-section" aria-label="Video latar">
+        <!-- NAVBAR DI DALAM VIDEO -->
+        <header class="site-header-in-hero" id="siteHeader">
+            <nav class="navbar" aria-label="Navigasi utama">
+                <a href="#" class="brand" aria-label="Beranda">
+                    <img class="brand-logo" src="https://disnakertrans.serangkab.go.id/front/assets/img/logo-opd.svg"
+                        alt="Logo Kabupaten Serang" width="48" height="48" decoding="async" />
+                </a>
 
-            <!-- Dots & Caption -->
-            <div class="dots" id="heroDots"></div>
-        </div>
+                <button class="nav-toggle" type="button" aria-label="Buka menu" aria-controls="primary-menu"
+                    aria-expanded="false">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+
+                <ul id="primary-menu" class="nav-list" role="menu">
+                    <li role="none"><a class="nav-link active" href="#">Home</a></li>
+                    <li role="none"><a class="nav-link" href="/profil/profil.html">Profile</a></li>
+                    <li role="none"><a class="nav-link" href="/Galery Artikel/galery.html">Berita</a></li>
+                    <li role="none"><a class="nav-link" href="#layanan">Layanan Pengaduan</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- VIDEO -->
+        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="/img/intiimage.jpg">
+            <source src="/video/dinasvideo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <!-- Tombol Suara -->
+        <button id="unmuteBtn" class="unmute-btn" aria-label="Aktifkan suara">🔈 Aktifkan Suara</button>
+
+        <div class="hero-sentinel" aria-hidden="true"></div>
     </section>
 
-    <!-- ===== Header / Navbar ===== -->
-    <header class="site-header">
-        <nav class="navbar container" aria-label="Navigasi utama">
-            <!-- Brand -->
-            <a href="#" class="brand" aria-label="Beranda">
-                <img class="brand-logo" src="https://disnakertrans.serangkab.go.id/front/assets/img/logo-opd.svg"
-                    alt="Logo Kabupaten Serang" width="48" height="48" decoding="async" />
-            </a>
-
-            <!-- Toggle (mobile) -->
-            <button class="nav-toggle" type="button" aria-label="Buka menu" aria-controls="primary-menu"
-                aria-expanded="false">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-
-            <!-- Menu -->
-            <ul id="primary-menu" class="nav-list" role="menu">
-                <li role="none"><a class="nav-link" href="#" role="menuitem">Home</a></li>
-                <li role="none"><a class="nav-link" href="/profil/profil.html" role="menuitem">Profile</a></li>
-                <li role="none"><a class="nav-link" href="/Galery Artikel/galery.html" role="menuitem">Berita</a></li>
-                <li role="none"><a class="nav-link" href="#layanan" role="menuitem">Layanan Pengaduan</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <!-- ===== Berita & Profil ===== -->
     <main id="berita" class="np-wrap" aria-label="Berita terbaru dan profil">
@@ -163,8 +159,8 @@
             <!-- Kartu Profil -->
             <aside class="np-profile" aria-label="Profil Kepala Dinas">
                 <div class="np-profile-card">
-                    <img class="np-profile-photo" src="/img/fotop.jpg" alt="Foto Kepala Dinas" width="340"
-                        height="420" loading="lazy" decoding="async" />
+                    <img class="np-profile-photo" src="/img/fotop.jpg" alt="Foto Kepala Dinas" width="340" height="420"
+                        loading="lazy" decoding="async" />
                     <div class="np-profile-meta">
                         <strong class="np-profile-name">DIANA ARDHIANTY UTAMI, SH, MM</strong>
                         <span class="np-profile-role">Kepala Dinas Tenaga Kerja dan Transmigrasi</span>
