@@ -1,100 +1,21 @@
 // /mainmenu/main.js
 document.addEventListener('DOMContentLoaded', () => {
-  /* =========================
-   * HERO SLIDER (autoplay + dots + caption + aksesibilitas)
-   * ========================= */
-  const slider = document.getElementById('heroSlider');
-  if (slider) {
-    const slides = Array.from(slider.querySelectorAll('img.slide'));
-    const dotsBox = slider.querySelector('#heroDots, .dots');
-    const caption = slider.querySelector('#heroCaption, .caption');
-    const prevBtn = slider.querySelector('.prev');
-    const nextBtn = slider.querySelector('.next');
+  const header = document.getElementById('siteHeader');
+  const sentinel = document.querySelector('.hero-sentinel');
+  if (!header || !sentinel) return;
 
-    if (slides.length >= 2) {
-      // build dots
-      let dots = [];
-      if (dotsBox) {
-        dotsBox.innerHTML = '';
-        const frag = document.createDocumentFragment();
-        for (let i = 0; i < slides.length; i++) {
-          const b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'dot';
-          b.title = `Gambar ${i + 1}`;
-          b.setAttribute('aria-label', `Gambar ${i + 1} dari ${slides.length}`);
-          b.dataset.index = String(i);
-          frag.appendChild(b);
-        }
-        dotsBox.appendChild(frag);
-        dots = Array.from(dotsBox.querySelectorAll('button'));
-      }
-
-      // state
-      let index = 0;
-      let timer = null;
-      const DURATION = 3000;
-
-      const updateCaption = () => {
-        if (caption) caption.textContent = `Gambar ${index + 1} dari ${slides.length}`;
-      };
-
-      const show = (i) => {
-        index = (i + slides.length) % slides.length;
-        slides.forEach((s, j) => s.classList.toggle('is-active', j === index));
-        dots.forEach((d, j) => d.classList.toggle('active', j === index));
-        updateCaption();
-      };
-
-      const next = () => show(index + 1);
-      const prev = () => show(index - 1);
-
-      const start = () => {
-        stop();
-        timer = setInterval(next, DURATION);
-      };
-      const stop = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-      };
-
-      // events: dots
-      dots.forEach((d) => {
-        d.addEventListener('click', (e) => {
-          const i = Number((e.currentTarget).dataset.index || 0);
-          show(i);
-          start();
-        });
-      });
-
-      // events: arrows (jika ada di HTML)
-      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); start(); });
-      if (nextBtn) nextBtn.addEventListener('click', () => { next(); start(); });
-
-      // pause on hover
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
-
-      // pause saat tab tidak aktif
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stop(); else start();
-      });
-
-      // keyboard (aksesibilitas)
-      slider.setAttribute('tabindex', '0');
-      slider.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { next(); start(); }
-        if (e.key === 'ArrowLeft') { prev(); start(); }
-      });
-
-      // init
-      show(0);
-      start();
-    } else if (slides.length === 1) {
-      // kalau cuma 1 slide, pastikan terlihat
-      slides[0].classList.add('is-active');
-      if (caption) caption.textContent = '';
-    }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      // Jika sentinel TIDAK terlihat -> sudah melewati video -> detach
+      header.classList.toggle('detached', !entry.isIntersecting);
+    }, { threshold: 0 });
+    io.observe(sentinel);
+  } else {
+    // Fallback
+    const heroH = document.querySelector('.hero-video-section')?.offsetHeight || window.innerHeight;
+    const onScroll = () => header.classList.toggle('detached', window.scrollY > heroH - 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   /* =========================
