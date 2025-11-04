@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  const btn = document.getElementById('unmuteBtn');
+  const vid = document.getElementById('heroVideo');
+
+  btn.addEventListener('click', () => {
+    vid.muted = !vid.muted;
+    btn.textContent = vid.muted ? '🔈 Aktifkan Suara' : '🔊 Matikan Suara';
+  });
   /* =========================
    * NAVBAR: toggle mobile + active link + efek scroll
    * ========================= */

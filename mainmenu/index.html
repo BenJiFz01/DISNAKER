@@ -38,12 +38,14 @@
             </nav>
         </header>
         <!-- VIDEO -->
-        <video class="hero-video" autoplay muted loop playsinline poster="/img/intiimage.jpg">
+        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="/img/intiimage.jpg">
             <source src="/video/dinasvideo.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
 
-        <!-- sentinel pemicu “keluar video” -->
+        <!-- Tombol Suara -->
+        <button id="unmuteBtn" class="unmute-btn" aria-label="Aktifkan suara">🔈 Aktifkan Suara</button>
+
         <div class="hero-sentinel" aria-hidden="true"></div>
     </section>
 

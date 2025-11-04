@@ -164,7 +164,7 @@ img {
     position: relative;
     width: 100%;
     overflow: hidden;
-    aspect-ratio: 2.7 / 1;
+    aspect-ratio: 2.6 / 1;
 }
 
 /* video */
@@ -177,6 +177,24 @@ img {
     object-position: center;
     z-index: 0;
 }
+
+.unmute-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.301);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+  transition: background .3s;
+}
+.unmute-btn:hover { background: rgba(0, 0, 0, 0.363); }
+
 
 /* overlay gelap tipis untuk kontras */
 .hero-overlay {
