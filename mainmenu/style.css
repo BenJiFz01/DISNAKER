@@ -149,7 +149,7 @@ img {
     }
 
     .banner-bg {
-        background: url("/video/dinasvideo.mp4") center/cover no-repeat #000;
+        background: url("/video/videobanner.mp4") center/cover no-repeat #000;
     }
 }
 
@@ -263,7 +263,7 @@ img {
 }
 
 .nav-link:hover {
-    background: rgba(255, 255, 255, 0.952);
+    background: linear-gradient(90deg, #0e99e95d);
 }
 
 .nav-link.active {
