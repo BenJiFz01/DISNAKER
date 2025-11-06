@@ -10,10 +10,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap"
     rel="stylesheet">
-
+  <link rel="stylesheet" href="/mainmenu/style.css">
   <link rel="stylesheet" href="styles_galery.css" />
   <script src="/mainmenu/main.js" defer></script>
-  <link rel="stylesheet" href="/mainmenu/style.css">
+
 </head>
 
 <body>
@@ -21,7 +21,7 @@
   <header class="site-header">
     <nav class="navbar container" aria-label="Navigasi utama">
       <!-- Brand -->
-      <a href="/mainmenu/index.html" class="brand" aria-label="Beranda">
+      <a href="../../mainmenu/index.html" class="brand" aria-label="Beranda">
         <img class="brand-logo" src="https://disnakertrans.serangkab.go.id/front/assets/img/logo-opd.svg"
           alt="Logo Kabupaten Serang" width="48" height="48" decoding="async" />
       </a>
@@ -35,14 +35,13 @@
       <!-- Menu -->
       <ul id="primary-menu" class="nav-list" role="menu">
         <li role="none"><a class="nav-link" href="../../mainmenu/index.html" role="menuitem">Home</a></li>
-        <li role="none"><a class="nav-link" href="#profil" role="menuitem">Profil</a></li>
+        <li role="none"><a class="nav-link" href="/profil/profil.html" role="menuitem">Profil</a></li>
         <!-- PENTING: arahkan ke file ini -->
-        <li role="none"><a class="nav-link" href="galery.html" role="menuitem">Berita</a></li>
-        <li role="none"><a class="nav-link" href="#layanan" role="menuitem">Layanan Pengaduan</a></li>
+        <li role="none"><a class="nav-link active" href="galery.html" role="menuitem">Berita</a></li>
+        <li role="none"><a class="nav-link" href="/mainmenu/index.html" role="menuitem">Layanan Pengaduan</a></li>
       </ul>
     </nav>
   </header>
-
 
   <!-- ===== HERO / TITLE ===== -->
   <section class="page-hero container">
@@ -52,18 +51,17 @@
   </section>
 
   <!-- ===== TOOLBAR (Search + Filter) ===== -->
-<section class="toolbar container">
-  <form class="search" onsubmit="return false;">
-    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <input id="q" type="search" placeholder="Cari artikel..." aria-label="Kata kunci" />
-  </form>
+  <section class="toolbar container">
+    <form class="search" onsubmit="return false;">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <input id="q" type="search" placeholder="Cari artikel..." aria-label="Kata kunci" />
+    </form>
 
-  <button id="btnFilter" class="btn btn-filter" type="button">Filter</button>
-</section>
+    <button id="btnFilter" class="btn btn-filter" type="button">Filter</button>
+  </section>
 
   <!-- ===== ARTICLE GRID ===== -->
   <section class="gallery container" id="grid">
@@ -125,7 +123,7 @@
       </div>
     </article>
 
-     <article class="card" data-category="pelatihan" data-date="2025-03-09">
+    <article class="card" data-category="pelatihan" data-date="2025-03-09">
       <a class="thumb" style="background-image:url('https://picsum.photos/seed/2/640/400');"></a>
       <div class="card-body">
         <h3>Pelatihan Operator CNC Batch 2</h3>
